@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
     markers = ['o-', 's--', 'D:', "^-", "v--", "o--", "s-", "D--", "^:", "v-", "o--", "s:"]
 
-    path = "test/test_sa_1/test_sa_1_1_results/"
+    path = "test_sa_1_3_results/"
     df1 = pd.read_csv(path + 'test_1.csv')
     df2 = pd.read_csv(path + 'test_2.csv')
     df3 = pd.read_csv(path + 'test_3.csv')
@@ -36,7 +36,7 @@ if __name__ == "__main__":
         y_values.append(x.loc[:, "Virality"])
 
     fig=plt.figure(figsize=(10, 5))
-    plt.rcParams.update({'font.size': 13})
+    plt.rcParams.update({'font.size': 18})
     ax=plt.subplot(111)
 
     for i in range (len(tresholds)):
@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
 
     plt.ylabel("Virality (Global Cascade fraction)")
-    plt.xlabel("Pn (Network Polarization)")
+    plt.xlabel("Pn (Network Polarization) - Delay SA: 2")
 
     # Shrink current axis by 20%
     box = ax.get_position()
@@ -57,9 +57,9 @@ if __name__ == "__main__":
     ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), title="\u03B8 (threshold)")
     plt.grid(visible=True,linewidth=0.2)
 
-    filepath = Path(path + 'test_sa_1_1_5step.png')
+    filepath = Path(path + 'test_sa_1_1_2step.pdf')
     filepath.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(filepath)
+    fig.savefig(filepath, bbox_inches='tight')
 
 
 
