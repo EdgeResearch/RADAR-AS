@@ -2,7 +2,7 @@ import numpy as np
 
 class test_2:
     network_polarization = np.linspace(0, 1, num=13)
-    opinion_polarization = 0
+    opinion_polarization    = 0
     treshold = 0.270
     #nodes = [100, 200, 300, 400, 500]
     nodes = [75,100,125,150,175,200,225]

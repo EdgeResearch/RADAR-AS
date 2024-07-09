@@ -1,0 +1,34 @@
+.form-row{
+    margin-bottom: 15px;
+}
+
+.input-container{
+    display: inline-block;
+    width: 100%;
+}
+
+.info-field {
+    float: right;
+    color: dimgrey;
+}
+
+.icon-style{
+    vertical-align: central;
+    margin: 0 0.6em;
+    color: #790000;
+}
+
+.form-info{
+    background-color: white;
+    border: #C1111F 5px solid;
+    border-radius: 1em;
+    padding: 0.4em 2em;
+    display: none;
+    font-weight: 500;
+    font-size: calc(10px + 0.390625vw);
+    margin: 0;
+}
+
+.form-info p{
+    margin: 0;
+}

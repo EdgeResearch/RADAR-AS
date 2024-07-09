@@ -50,7 +50,7 @@ if __name__ == "__main__":
     ax.legend(loc='center left', bbox_to_anchor=(1, 0.5), title="\u03B8 (threshold)")
     plt.grid(visible=True, linewidth=0.2)
 
-    filepath = Path(path + 'test_no_sa.pdf')
+    filepath = Path(path + 'test_no_sa2.pdf')
     filepath.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(filepath, bbox_inches='tight')
 

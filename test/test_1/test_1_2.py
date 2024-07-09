@@ -1,5 +1,5 @@
 import os
-import pyNetLogo
+import pynetlogo
 import pandas as pd
 from pathlib import Path
 from test_1_parameters import *

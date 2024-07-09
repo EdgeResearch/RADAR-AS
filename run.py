@@ -1,9 +1,9 @@
 import os
-import pyNetLogo
+import pynetlogo
 from environment.fake_news_diffusion_env import FakeNewsSimulation
 from netlogo.simulation_controls import NetlogoCommands
 
-netlogo = pyNetLogo.NetLogoLink(gui=False)
+netlogo = pynetlogo.NetLogoLink(gui=False)
 modelfile = os.path.abspath('./netlogo/FakeNewsSimulation.nlogo')
 netlogoCommands = NetlogoCommands(netlogo, modelfile)
 env = FakeNewsSimulation(netlogoCommands)
@@ -25,6 +25,4 @@ while True:
         print("Total Reward: {} ".format(total_reward))
         env.reset()
         break
-
 print("Done.")
-env.close()

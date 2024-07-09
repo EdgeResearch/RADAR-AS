@@ -7,7 +7,6 @@ class NetlogoCommands:
     def __init__(self, netlogo, modelfile):
         self.netlogo = netlogo
         self.modelfile = modelfile
-        self.netlogo.load_model(modelfile)
         
     def get_a_active_agents(self):
         return self.netlogo.report("get-a-active-agents")

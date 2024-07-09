@@ -85,6 +85,3 @@ class FakeNewsSimulation(Env):
             self.static_b = True
 
         return self.get_obs(), reward, terminated, False, self.get_info()
-    
-    def close(self):
-        self.netlogo.kill_workspace()

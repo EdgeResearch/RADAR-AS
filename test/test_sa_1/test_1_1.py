@@ -1,6 +1,6 @@
 import os
 import time
-import pyNetLogo
+import pynetlogo
 import pandas as pd
 from pathlib import Path
 from environment.fake_news_diffusion_env import FakeNewsSimulation
@@ -8,7 +8,7 @@ from deepq_simulation import DeepQLearning
 from test_1_parameters import *
 
 
-netlogo = pyNetLogo.NetLogoLink(gui=False)
+netlogo = pynetlogo.NetLogoLink(gui=False)
 modelfile = os.path.abspath('netlogo/FakeNewsSimulation.nlogo')
 netlogo.load_model(modelfile)
 netlogoCommands = NetlogoCommands(netlogo, modelfile)
