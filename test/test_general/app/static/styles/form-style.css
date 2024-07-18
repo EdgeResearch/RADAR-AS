@@ -25,10 +25,17 @@
     padding: 0.4em 2em;
     display: none;
     font-weight: 500;
-    font-size: calc(10px + 0.390625vw);
+    font-size: 1em;
     margin: 0;
 }
 
 .form-info p{
     margin: 0;
+}
+
+.form-control{
+    border: #003049 5px solid;
+    font-size: 1em;
+    border-radius: 5px;
+    height: 3em;
 }

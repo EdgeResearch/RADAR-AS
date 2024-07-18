@@ -1,10 +1,9 @@
 from flask import Flask, jsonify, request, render_template
 from test_general_parameters import TestGeneralParametes
-import test_general
+import test_general_1
 import utils
-import tmpTest
 
-app = Flask(__name__, template_folder="./templates")
+app = Flask(__name__, template_folder="./app")
 
 # Variabili globali
 #netlogo = None
@@ -52,10 +51,10 @@ def submit():
     else:
         print("Le variabili hanno già il modello")
     """
-    netlogo, netlogoCommands = test_general.load_sim_model()
-    dataframe = test_general.start_test(netlogo, netlogoCommands, testParameters)
+    netlogo, netlogoCommands = test_general_1.load_sim_model()
+    dataframe = test_general_1.start_test_1(netlogo, netlogoCommands, testParameters)
 
-    data_for_chart = utils.setup_data_for_chart(dataframe)
+    data_for_chart = utils.setup_data_for_chart(dataframe, "Thresholds")
     print(f"Mando: {data_for_chart}")
     print("Spengo il sistema...")
     netlogo.kill_workspace()
@@ -68,7 +67,7 @@ def goHome():
 @app.route("/")
 @app.route("/index")
 def index():
-    return render_template("test-page-1.html")
+    return render_template("templates/test-page-1.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

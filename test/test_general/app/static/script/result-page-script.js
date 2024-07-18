@@ -83,3 +83,67 @@ async function prepare_chart_data(data, xLabel, yLabel, dataLabel) {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+async function mostraGrafico(graficoBase64) {
+
+    // Crea il data URL base64 per l'immagine
+    let dataUrl = 'data:image/png;base64,' + graficoBase64;
+
+    // Aggiorna l'immagine e il link di download
+    document.getElementById("grafico").src = dataUrl;
+    document.getElementById("download-chart-link").href = dataUrl;
+    let currentDate = formatDate(new Date());
+    document.getElementById("download-chart-link").download = "result-chart_" + currentDate;
+}
+
+async function prepareLog(log_text) {
+    let log_text_to_print = log_text.replace(/\n/g, "<br>");
+    document.getElementById("log-box").innerHTML = log_text_to_print
+
+    // Crea un blob dal testo
+    let blob = new Blob([log_text], {type: 'text/plain'});
+    let url = window.URL.createObjectURL(blob);
+
+    // Aggiorna il link di download
+    let downloadLink = document.getElementById("download-log-link");
+    downloadLink.href = url;
+    let currentDate = formatDate(new Date());
+    downloadLink.download = "test-log_" + currentDate;
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const jqueryScript = document.createElement('script');
+    let log_text = sessionStorage.getItem("log");
+
+    prepareLog(log_text)
+
+
+    jqueryScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js';
+    jqueryScript.onload = function () {
+        $(document).ready(function () {
+        $("#chart-preview").click(function () {
+            $("#grafico").slideToggle();
+        });
+        $("#log-preview").click(function () {
+            $("#log-box").slideToggle();
+        });
+    });
+    };
+    document.head.appendChild(jqueryScript);
+});
+
+
+
+function formatDate(date) {
+    // Estrai i vari componenti della data
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // I mesi vanno da 0 (gennaio) a 11 (dicembre)
+    const year = String(date.getFullYear()).slice(-2); // Prendi solo le ultime due cifre dell'anno
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+
+    // Costruisci la stringa nel formato desiderato
+    return `${day}-${month}-${year}_${hours}-${minutes}`;
+}

@@ -1,0 +1,52 @@
+.download-button{
+    font-size: 1.1em;
+    color: #003049;
+    transition: 0.1s linear;
+}
+
+.download-button:hover{
+    font-size: 1.15em;
+}
+
+.download-button-sub{
+    font-size: 0.9em;
+    color: dimgrey;
+    transition: 0.1s linear;
+    margin: 0;
+}
+
+.download-button-sub:hover{
+    font-size: 1em;
+}
+
+.download-button-sub:hover .icon{
+    color: #003049;
+}
+
+.chart-preview-box{
+    display: none;
+    border: #C1111F 5px solid;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 0.56em;
+}
+
+.log-box{
+    display: none;
+    background-color: #1e1e1e;
+    font-weight: bold;
+    color: whitesmoke;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.log-box p{
+    margin: 0;
+    text-align: left;
+    color: whitesmoke;
+}

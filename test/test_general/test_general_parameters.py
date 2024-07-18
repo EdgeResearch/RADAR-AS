@@ -2,13 +2,11 @@ import numpy as np
 
 
 class TestGeneralParametes:
-
-
     network_polarization = np.linspace(0, 1, num=13)
     opinion_polarization = 0
     thresholds = [0.150, 0.174, 0.198, 0.222, 0.246, 0.270, 0.294, 0.318, 0.342, 0.366, 0.390, 0.414]
     path = "test_general_results/"
-    number_of_iterations = 300
+    number_of_iterations = 100
     echo_chamber_fraction = 0.20
     opinion_metric_value = 0.5
     opinion_metric_steps = [0.01, 0.04, 0.08, 0.10, 0.12, 0.16, 0.20, 0.33, 0.66]

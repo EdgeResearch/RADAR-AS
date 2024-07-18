@@ -1,12 +1,12 @@
 import os
 import numpy as np
-import pyNetLogo
+import pynetlogo as pyNetLogo
 import pandas as pd
 from pathlib import Path
 from test_2_parameters import *
 
 netlogo = pyNetLogo.NetLogoLink(gui=False)
-modelfile = os.path.abspath('netlogo/FakeNewsSimulation.nlogo')
+modelfile = os.path.abspath('../../netlogo/FakeNewsSimulation.nlogo')
 netlogo.load_model(modelfile)
 netlogoCommands = NetlogoCommands(netlogo, modelfile)
 

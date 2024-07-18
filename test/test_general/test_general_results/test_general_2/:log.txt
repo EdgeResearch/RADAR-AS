@@ -1,0 +1,40 @@
+Numero di Tick: 10
+Numero di Iterazioni: 10
+Opinion Polarization: 0.0
+Network Polarization: [0.034, 0.125, 0.234]
+Treshold: 0.145
+Numero di Nodi [75, 100, 125]
+>> Carico il modello NetLogo...
+>> MODELLO CARICATO 
+>> Recupero i parametri... 
+NUMERO DI ITERAZIONI: 10
+>> PARAMETRI RECUPERATI 
+P_N is set to: 0.034
+nb-nodes is set to: 75.0
+nb-nodes is set to: 100.0
+nb-nodes is set to: 125.0
+P_N is set to: 0.125
+nb-nodes is set to: 75.0
+nb-nodes is set to: 100.0
+nb-nodes is set to: 125.0
+P_N is set to: 0.234
+nb-nodes is set to: 75.0
+nb-nodes is set to: 100.0
+nb-nodes is set to: 125.0
+>> TEST TERMINATO
+>> Salvo i risultati...
+>> Risultati salvati in test_general_results/
+>> Creo il grafico...
+>> Grafico creato e salvato in  test_general_results/
+>> Stampo il dataframe:
+   Nodes  Network Polarization  Virality
+0   75.0                 0.034       0.9
+1  100.0                 0.034       0.6
+2  125.0                 0.034       0.7
+3   75.0                 0.125       0.8
+4  100.0                 0.125       0.9
+5  125.0                 0.125       0.9
+6   75.0                 0.234       1.0
+7  100.0                 0.234       1.0
+8  125.0                 0.234       0.8
+Spengo il sistema...

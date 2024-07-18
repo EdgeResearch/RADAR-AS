@@ -8,22 +8,49 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="../static/styles/main-style.css" rel="stylesheet">
     <link href="../static/styles/loading-style.css" rel="stylesheet">
-    <link href="../static/styles/form-style.css" rel="stylesheet">
+    <link href="../static/styles/result-style.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script src="../static/script/chart_script.js"></script>
+    <script src="../static/script/result-page-script.js"></script>
     <script src="../static/script/main_script.js"></script>
     <script src="../static/script/form_script.js"></script>
     <script src="https://kit.fontawesome.com/2f266e86a2.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/eel.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body onload="plot_chart()">
     <div class="container main-container p-4">
         <div class="row">
-                <div class="col-12 text-center"><h1 class="mt-3" style="font-weight: bolder">TEST_GENERAL RESULTS:</h1></div>
+                <div class="col-12 text-center"><h1 class="mt-3 main-title" style="color: #003049">TEST RESULTS:</h1></div>
         </div>
         <div class="row">
             <div class="col-12">
                 <canvas id="myChart" style="width:100%;"></canvas>
+            </div>
+        </div>
+        <div class="row highlight-card text-center">
+            <div class="col-xs-12 col-md-12">
+                <div class="row">
+                    <div class="col-12">
+                        <a class="download-button" id="download-chart-link" href="" download="grafico.png">Scarica Grafico <i class="fa-solid fa-file-arrow-down"></i></a>
+                        <p class="download-button-sub" id="chart-preview">(Anteprima <i class="fa-solid fa-eye icon"></i>)</p>
+                    </div>
+                    <div class="col-12">
+                        <img id="grafico" src="" alt="Grafico" style="width: 100%;" class="chart-preview-box">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="row">
+                    <div class="col-12">
+                        <a class="download-button" id="download-log-link" href="../assets/test_1.png" download="grafico.png">Scarica il Log della simulazione <i class="fa-solid fa-file-lines"></i></a>
+                        <p class="download-button-sub" id="log-preview">(Anteprima <i class="fa-solid fa-eye icon"></i>)</p>
+                    </div>
+                    <div class="col-12">
+                        <div class="log-box" id="log-box">
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -49,9 +76,11 @@
                 var xLabel = sessionStorage.getItem("xLabel");
                 var yLabel = sessionStorage.getItem("yLabel");
                 var dataLabel = sessionStorage.getItem("dataLabel");
+                var chart = sessionStorage.getItem("chart")
                 console.log("LEGGO:\n");
                 console.log(data_to_prepare)
-                await prepare_chart_data(data_to_prepare, xLabel, yLabel, dataLabel)
+                await prepare_chart_data(data_to_prepare, xLabel, yLabel, dataLabel);
+                await mostraGrafico(chart);
                 new Chart("myChart", config)
             }
         </script>
