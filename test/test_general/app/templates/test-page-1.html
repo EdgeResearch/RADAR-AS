@@ -9,119 +9,261 @@
     <link href="../static/styles/main-style.css" rel="stylesheet">
     <link href="../static/styles/loading-style.css" rel="stylesheet">
     <link href="../static/styles/form-style.css" rel="stylesheet">
+    <link href="../static/styles/result-style.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="../static/script/result-page-script.js"></script>
     <script src="../static/script/main_script.js"></script>
     <script src="../static/script/form_script.js"></script>
     <script src="https://kit.fontawesome.com/2f266e86a2.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/eel.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 <body>
-    <div class="container main-container p-4">
-        <form action="/submit" method="POST" id="test-form">
-            <div class="row">
-                <div class="col-12 col-md-7 text-center text-md-right"><h1 class="mt-3 main-title" id="titolo" style="color: #003049">TEST 1</h1></div>
-                <div class="col-12 col-md-5 text-center text-md-left"><img style="height: 15vh" src="../assets/dialog.png"></div>
-                <div class="col-12 text-center"><h4 class="mb-5">Come cambia la Viralità al variare della network polarization e Thresholds (creduloneria)?</h4> </div>
-            </div>
-            <div class="row form-row">
-                <div class="col-md-6 col-12">
-                    <div class="input-container">
-                        <label for="ticks" class="label-field"> Ticks</label>
-                        <span class="info-field" id="ticks-info-icon">info<i class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
-                        <input type="number" class="form-control" id="ticks" name="ticks" placeholder="Number of Ticks" value="100">
-                        <div id="ticks-info" class="form-info">
-                            <p>Determinano la durata della simulazione</p>
-                            <ul>
-                                <li><b>Dominio: n > 0</b></li>
-                                <li>Valore di Default: 100</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-12">
-                    <div class="input-container">
-                        <label for="iterations" class="label-field">Number Of Iterations</label>
-                        <span class="info-field" id="iterations-info-icon">info<i class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
-                        <input type="number" class="form-control" id="iterations" name="iterations" placeholder="Number of Iteration" value="100">
-                        <div id="iterations-info" class="form-info">
-                            <p>Determinano la durata della simulazione</p>
-                            <ul>
-                                <li><b>Dominio: n > 0</b></li>
-                                <li>Valore di Default: 100</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row form-row">
-                <div class="col-12">
-                    <label for="opinion_polarization">Opinion Polarization</label>
-                    <span class="info-field" id="opinion-polarization-info-icon">info<i class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
-                    <input type="number" class="form-control" id="opinion_polarization" name="opinion_polarization" placeholder="Opinion Polarization" value="0">
-                    <div id="opinion-polarization-info" class="form-info">
-                        <p>Indica quanto gli utenti, in relazione ad una opinione, sono più inclini a condividerne le vedute.</p>
+<div class="container main-container p-4">
+    <form action="/submit" method="POST" id="test-form">
+        <div class="row">
+            <div class="col-12 col-md-7 text-center text-md-right"><h1 class="mt-3 main-title" id="titolo"
+                                                                       style="color: #003049">TEST 1</h1></div>
+            <div class="col-12 col-md-5 text-center text-md-left"><img style="height: 15vh"
+                                                                       src="../static/assets/dialog.png"></div>
+            <div class="col-12 text-center"><h4 class="mb-5">Come cambia la Viralità al variare della network
+                polarization e Thresholds (creduloneria)?</h4></div>
+        </div>
+        <div class="row form-row">
+            <div class="col-md-6 col-12">
+                <div class="input-container">
+                    <label for="ticks" class="label-field"> Ticks</label>
+                    <span class="info-field" id="ticks-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="ticks" name="ticks" placeholder="Number of Ticks"
+                           value="100">
+                    <div id="ticks-info" class="form-info">
+                        <p>Determinano la durata della simulazione</p>
                         <ul>
-                            <li><b>Dominio:</b> &Ropf;[0,1] </li>
+                            <li><b>Dominio: n > 0</b></li>
+                            <li>Valore di Default: 100</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="row form-row">
-                <div class="col-12">
-                    <label for="network_polarization">Network Polarization</label>
-                    <span class="info-field" id="network-polarization-info-icon">info<i class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
-                    <input type="text"  class="form-control" id="network_polarization" name="network_polarization"
-                        pattern="^(\d+(\.\d+)?)(,\s*\d+(\.\d+)?)*$"
-                        placeholder="Esempio: 0.150, 0.174, 0.198">
-                    <div id="network-polarization-info" class="form-info">
-                        <p>Indica quanto gli utenti sono connessi gli uni con gli altri rispetto al resto del network. Tecnicamente è la densità di connessioni interne al cluster.</p>
+            <div class="col-md-6 col-12">
+                <div class="input-container">
+                    <label for="iterations" class="label-field">Number Of Iterations</label>
+                    <span class="info-field" id="iterations-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="iterations" name="iterations"
+                           placeholder="Number of Iteration" value="100">
+                    <div id="iterations-info" class="form-info">
+                        <p>Determinano la durata della simulazione</p>
                         <ul>
-                            <li><b>Dominio:</b> &Ropf;[0,1] </li>
-                            <li>È possibile inserire <b>più valori separati da una virgola.</b> [0.1,0.2, etc.]</li>
+                            <li><b>Dominio: n > 0</b></li>
+                            <li>Valore di Default: 100</li>
                         </ul>
                     </div>
-                </div>
-            </div>
-            <div class="row form-row">
-                <div class="col-12">
-                    <label for="thresholds">Thresholds</label>
-                    <span class="info-field" id="thresholds-info-icon">info<i class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
-                    <input type="text"  class="form-control" id="thresholds" name="thresholds"
-                        pattern="^(\d+(\.\d+)?)(,\s*\d+(\.\d+)?)*$"
-                        placeholder="Esempio: 0.150, 0.174, 0.198">
-                    <div id="thresholds-info" class="form-info">
-                        <p>Indica la soglia di attivazione.</p>
-                        <ul>
-                            <li><b>Dominio:</b> &Ropf;[0,1] </li>
-                            <li>È possibile inserire <b>più valori separati da una virgola.</b> [0.1,0.2, etc.]</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <div class="row mt-4">
-                <div class="col-xs-12 col-md-6">
-                    <div class="menuButton" onclick="goHome()">
-                         <a><h4 class="buttonText">Home <i class="fa-solid fa-house"></i></h4></a>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <div class="menuButton" onclick="start_test_1()">
-                         <a><h4 class="buttonText">Avvia il Test <i class="fa-solid fa-circle-play"></i></h4></a>
-                    </div>
-                </div>
-            <div class="col-12 mt-5">
-                <div class="loader" id="loader-bar">
-                    <div class="loaderBar"></div>
                 </div>
             </div>
         </div>
+        <div class="row form-row">
+            <div class="col-12">
+                <label for="opinion_polarization">Opinion Polarization</label>
+                <span class="info-field" id="opinion-polarization-info-icon">info<i
+                        class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                <input type="number" class="form-control" id="opinion_polarization" name="opinion_polarization"
+                       placeholder="Opinion Polarization" value="0">
+                <div id="opinion-polarization-info" class="form-info">
+                    <p>Indica quanto gli utenti, in relazione ad una opinione, sono più inclini a condividerne le
+                        vedute.</p>
+                    <ul>
+                        <li><b>Dominio:</b> &Ropf;[0,1]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-12">
+                <label for="network_polarization">Network Polarization</label>
+                <span class="info-field" id="network-polarization-info-icon">info<i
+                        class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                <input type="text" class="form-control" id="network_polarization" name="network_polarization"
+                       pattern="^(\d+(\.\d+)?)(,\s*\d+(\.\d+)?)*$"
+                       placeholder="Esempio: 0.150, 0.174, 0.198">
+                <div id="network-polarization-info" class="form-info">
+                    <p>Indica quanto gli utenti sono connessi gli uni con gli altri rispetto al resto del network.
+                        Tecnicamente è la densità di connessioni interne al cluster.</p>
+                    <ul>
+                        <li><b>Dominio:</b> &Ropf;[0,1]</li>
+                        <li>È possibile inserire <b>più valori separati da una virgola.</b> [0.1,0.2, etc.]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-12">
+                <label for="thresholds">Thresholds</label>
+                <span class="info-field" id="thresholds-info-icon">info<i
+                        class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                <input type="text" class="form-control" id="thresholds" name="thresholds"
+                       pattern="^(\d+(\.\d+)?)(,\s*\d+(\.\d+)?)*$"
+                       placeholder="Esempio: 0.150, 0.174, 0.198">
+                <div id="thresholds-info" class="form-info">
+                    <p>Indica la soglia di attivazione.</p>
+                    <ul>
+                        <li><b>Dominio:</b> &Ropf;[0,1]</li>
+                        <li>È possibile inserire <b>più valori separati da una virgola.</b> [0.1,0.2, etc.]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-12">
+                <label for="superagent">Super-Agent</label>
+                <span class="info-field" id="superagent-info-icon">info
+                    <i class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                <ul>
+                    <li><input type="checkbox" class="form-checkbox" id="superagent" name="superagent" value="true">
+                    </li>
+                </ul>
+                <div id="superagent-info" class="form-info">
+                    <p>Per attivare l'utilizzo di un Super Agent, basato su Deep Reinforcement Learning atto a limitare
+                        la viralità </p>
+                </div>
+            </div>
+        </div>
+        <div class="row form-row" id="superagent-parameters-container">
+            <div class="col-12 text-center mb-3">
+                <h5 style="font-weight: bold; color: #C1111F; text-decoration-line: underline;">Parametri Super
+                    Agent:</h5>
+            </div>
+            <div class="col-md-6 col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="warning" class="label-field"> Warning</label>
+                    <span class="info-field" id="warning-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <ul>
+                        <li><input type="checkbox" class="form-checkbox" id="warning" name="warning" value="True"></li>
+                    </ul>
+
+                    <div id="warning-info" class="form-info">
+                        <p>Indica se il warning può essere globale o meno</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="node-range-static-b" class="label-field">node-range-static-b</label>
+                    <span class="info-field" id="node-range-static-b-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="node-range-static-b" name="node-range-static-b"
+                           placeholder="node-range-static-b value" value="0.05">
+                    <div id="node-range-static-b-info" class="form-info">
+                        <p>Indica la frazione dei nodi a cui il super-agent obbliga il mantenimento dell’opinione B</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="node-range" class="label-field"> node-range</label>
+                    <span class="info-field" id="node-range-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="node-range" name="node-range"
+                           placeholder="node-range value" value="0.10">
+                    <div id="node-range-info" class="form-info">
+                        <p>Indica la frazione dei nodi a cui si collega il super-agent</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="choose-method" class="label-field">choose-method</label>
+                    <span class="info-field" id="choose-method-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <select class="form-control" id="choose-method" name="choose-method">
+                            <option value="degree" selected>degree</option>
+                            <option value="betweenness">betweenness</option>
+                            <option value="page-rank">page-rank</option>
+                    </select>
+                    <div id="choose-method-info" class="form-info">
+                        <p>Determina il metodo di scelta dei collega- menti che crea il super-agent</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="warning-impact" class="label-field">warning_impact</label>
+                    <span class="info-field" id="warning-impact-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="warning-impact" name="warning-impact"
+                           placeholder="warning-impact value" value="0.10">
+                    <div id="warning-impact-info" class="form-info">
+                        <p>To define</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="warning-impact-neutral" class="label-field"> warning-impact-neutral</label>
+                    <span class="info-field" id="warning-impact-neutral-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="warning-impact-neutral" name="warning-impact-neutral"
+                           placeholder="warning-impact-neutral value" value="0.30">
+                    <div id="warning-impact-neutral-info" class="form-info">
+                        <p>To define</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="sa-delay" class="label-field"> super-agent delay</label>
+                    <span class="info-field" id="sa-delay-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="sa-delay" name="sa-delay"
+                           placeholder="sa-delay value" value="5">
+                    <div id="sa-delay-info" class="form-info">
+                        <p>To define</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row mt-4">
+        <div class="col-xs-12 col-md-6">
+            <div class="menuButton" onclick="goHome()">
+                <a><h4 class="buttonText">Home <i class="fa-solid fa-house"></i></h4></a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <button class="menuButton" id="startButton" onclick="start_test_1()">
+                <a><h4 class="buttonText">Avvia il Test <i class="fa-solid fa-circle-play"></i></h4></a>
+            </button>
+        </div>
+        <div class="col-12 mt-5">
+            <div class="loader" id="loader-bar">
+                <div class="loaderBar"></div>
+            </div>
+            <div class="log-box" id="log-box" style="margin-top: 1em; height: 20vh; overflow-y: scroll;">
+
+            </div>
+        </div>
     </div>
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</div>
+<script>
+    function startLog() {
+        var logBox = document.getElementById("log-box");
+        let count = 0;
+        const interval = setInterval(() => {
+            if (count < 20) {
+                logBox.innerHTML += ">> Linea " + count + "<br>";
+                logBox.scrollTop = logBox.scrollHeight; // Scrolla automaticamente alla fine
+                count++;
+            } else {
+                clearInterval(interval);
+            }
+        }, 1000);
+    }
+</script>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

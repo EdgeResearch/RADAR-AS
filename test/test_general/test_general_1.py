@@ -12,13 +12,9 @@ from test_general_parameters import calculate_fraction
 
 def load_sim_model():
     modelfile = os.path.abspath('../../netlogo/FakeNewsSimulation.nlogo')
-    netlogo = pynetlogo.NetLogoLink(gui=False)
-
-    print(">> Carico il modello NetLogo...")
+    netlogo = pynetlogo.NetLogoLink(jvm_path="/Users/andrea/Library/Java/JavaVirtualMachines/openjdk-20.0.2/Contents/Home/bin/java")
 
     netlogo.load_model(modelfile)
-
-    print(">> MODELLO CARICATO ")
 
     netlogoCommands = NetlogoCommands(netlogo, modelfile)
 
@@ -66,7 +62,6 @@ def start_test_1(netlogo, netlogoCommands, testParameters):
             new_df = pd.DataFrame({"Thresholds": [tresholds[j]], "Network Polarization": [network_polarization[i]],
                                    'Virality': [calculate_fraction(global_cascades)]})
             df = pd.concat([df, new_df], ignore_index=True)
-    print(">> TEST TERMINATO")
     print(">> Salvo i risultati...")
     filepath = Path(testParameters.path + 'test_general_1.csv')
     filepath.parent.mkdir(parents=True, exist_ok=True)

@@ -32,6 +32,7 @@ total_ticks = netlogoCommands.get_total_ticks()
 
 ticks = netlogoCommands.get_total_ticks()
 ticks = int(ticks)
+print("Sono qua")
 dql = DeepQLearning()
 
 tresholds = test_sa_1.tresholds
@@ -51,6 +52,7 @@ for i in range(len(network_polarization)):
         global_cascades = []
 
         print("Training model")
+
         dql.run_model_training(env, netlogoCommands, test_sa_1.number_of_iterations)
 
         print("Testing model")

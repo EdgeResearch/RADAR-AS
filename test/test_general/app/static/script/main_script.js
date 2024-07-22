@@ -1,10 +1,12 @@
 async function start_test_1() {
 
-    if(!validateTest1()){
+    if (!validateTest1()) {
         return;
     }
 
+    disableButton();
     document.getElementById("loader-bar").style.display = "block";
+    document.getElementById("log-box").style.display = "block";
 
     let ticks = document.getElementById("ticks").value;
     let iterations = document.getElementById("iterations").value;
@@ -12,6 +14,7 @@ async function start_test_1() {
     let network_polarization = document.getElementById("network_polarization").value;
     let thresholds = document.getElementById("thresholds").value;
 
+    // Configura i dettagli della richiesta
     let input = {
         ticks: ticks,
         iterations: iterations,
@@ -19,28 +22,69 @@ async function start_test_1() {
         network_polarization: network_polarization,
         thresholds: thresholds
     }
+    console.log(JSON.stringify(input));
 
-    let jsonResponse = await eel.submit_test_1(JSON.stringify(input))();
+    let result_response = ""
+    console.log("CHIAMO");
 
-    let response = JSON.parse(jsonResponse)
+    const logElement = document.getElementById("log-box");
+    logElement.innerHTML = "";  // Clear previous logs
 
+    const response = await fetch('/submit_test_1', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(input) // Converti i dati in formato JSON
+    });
 
-    sessionStorage.setItem("data", response["data_for_chart"]);
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder('utf-8');
+
+    while (true) {
+        const {value, done} = await reader.read();
+        if (done) {
+            break;
+        }
+        const text = decoder.decode(value, {stream: true})
+
+        console.log("Testo corrente:")
+        console.log(text)
+        let log_message = JSON.parse(text);
+
+        if (log_message.status === "in_progress") {
+            let text_to_print = log_message.value.replace(/\n/g, "<br>");
+            logElement.innerHTML += text_to_print + "<br>";
+            logElement.scrollTop = logElement.scrollHeight; // Scrolla automaticamente alla fine
+        } else if (log_message.status === "done") {
+            result_response = log_message.value
+        }
+    }
+
+    console.log("Fine funzione");
+
+    console.log(result_response)
+
+    sessionStorage.setItem("data", result_response["data_for_chart"]);
     sessionStorage.setItem("xLabel", "Pn (Network Polarization)");
     sessionStorage.setItem("yLabel", "Virality (Global Cascade fraction)");
     sessionStorage.setItem("dataLabel", "Threshold");
-    sessionStorage.setItem("chart", response["img_chart"])
-    sessionStorage.setItem("log", response["log_output"])
-    window.location.href = 'result-page.html';
+    sessionStorage.setItem("chart", result_response["img_chart"])
+    sessionStorage.setItem("log", result_response["log_output"])
+    enableButton();
+    console.log("MANDO QUESTA RISPOSTA")
+    console.log(response)
+    location.href = '/results';
 }
 
-async function start_test_2(){
+async function start_test_2() {
 
-    if(!validateTest2()){
+    if (!validateTest2()) {
         return;
     }
-
+    disableButton();
     document.getElementById("loader-bar").style.display = "block";
+    document.getElementById("log-box").style.display = "block";
     let ticks = document.getElementById("ticks").value;
     let iterations = document.getElementById("iterations").value;
     let opinion_polarization = document.getElementById("opinion_polarization").value;
@@ -54,30 +98,59 @@ async function start_test_2(){
         opinion_polarization: opinion_polarization,
         network_polarization: network_polarization,
         thresholds: thresholds,
-        nodes : nodes
+        nodes: nodes
     }
 
     console.log(JSON.stringify(input));
-    let jsonResponse = await eel.submit_test_2(JSON.stringify(input))();
+    let result_response = ""
+    console.log("CHIAMO");
 
-    let response = JSON.parse(jsonResponse)
+    const logElement = document.getElementById("log-box");
+    logElement.innerHTML = "";  // Clear previous logs
+
+    const response = await fetch('/submit_test_2', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(input) // Converti i dati in formato JSON
+    });
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder('utf-8');
+
+    while (true) {
+        const {value, done} = await reader.read();
+        if (done) {
+            break;
+        }
+        const text = decoder.decode(value, {stream: true})
+        let log_message = JSON.parse(text);
+
+        if (log_message.status === "in_progress") {
+            let text_to_print = log_message.value.replace(/\n/g, "<br>");
+            logElement.innerHTML += text_to_print + "<br>";
+            logElement.scrollTop = logElement.scrollHeight; // Scrolla automaticamente alla fine
+        } else if (log_message.status === "done") {
+            result_response = log_message.value
+        }
+    }
+
+    console.log("Fine funzione");
+
+    console.log(result_response)
 
 
-    sessionStorage.setItem("data", response["data_for_chart"]);
+    sessionStorage.setItem("data", result_response["data_for_chart"]);
     sessionStorage.setItem("xLabel", "Pn (Network Polarization)");
     sessionStorage.setItem("yLabel", "Virality (Global Cascade fraction)");
     sessionStorage.setItem("dataLabel", "Nodes");
-    sessionStorage.setItem("chart", response["img_chart"])
-    sessionStorage.setItem("log", response["log_output"])
-    window.location.href = 'result-page.html';
+    sessionStorage.setItem("chart", result_response["img_chart"])
+    sessionStorage.setItem("log", result_response["log_output"])
+    enableButton();
+    location.href = '/results';
 }
 
 function goHome() {
-    window.location.href = "homepage.html"
-}
-
-async function startSimpleTest() {
-    let jsonResponse = await eel.startTest()();
-    let response = JSON.parse(jsonResponse);
-    console.log(response);
+    window.location.href = "home"
 }

@@ -46,9 +46,25 @@ h1, h2 {
     transform: translateY(-2%);
 }
 
+
+
 .menuButton:hover .buttonText{
     color: whitesmoke;
 }
+
+.menuButtonDisabled {
+    height: 2.5em;
+    width: fit-content;
+    background-color: lightgrey;
+    border: dimgrey 5px solid;
+    border-radius: 1em;
+    margin: 2em auto;
+    display: flex;
+    padding: 0 20px;
+    align-items: center; /* Centra verticalmente il contenuto */
+    transition: all 250ms;
+}
+
 
 .buttonText {
     margin: 0;
