@@ -41,6 +41,7 @@
 }
 
 .form-checkbox{
+    vertical-align: text-bottom;
     border: #003049 5px solid;
     margin-left: 2em;
     height: 25px;

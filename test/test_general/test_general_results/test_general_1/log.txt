@@ -1,29 +1,55 @@
-Numero di Ticks: 10
-Numero di Iterazioni: 10
+Numero di Ticks: 20
+Numero di Iterazioni: 20
 Opinion Polarization: 0.0
-Network Polarization: [0.2, 0.5]
-Thresholds Polarization: [0.15, 0.174]
+Network Polarization: [0.1, 0.14, 0.167, 0.234]
+Thresholds Polarization: [0.1, 0.14, 0.245, 0.3]
 >> Carico il modello di netlogo...
 >> Modello caricato
 >> Avvio il test...
 >> Recupero i parametri... 
-NUMERO DI ITERAZIONI: 10
+NUMERO DI ITERAZIONI: 20
 >> PARAMETRI RECUPERATI 
-P_N is set to: 0.2
-teta is set to: 0.15
-teta is set to: 0.174
-P_N is set to: 0.5
-teta is set to: 0.15
-teta is set to: 0.174
+P_N is set to: 0.1
+teta is set to: 0.1
+teta is set to: 0.14
+teta is set to: 0.245
+teta is set to: 0.3
+P_N is set to: 0.14
+teta is set to: 0.1
+teta is set to: 0.14
+teta is set to: 0.245
+teta is set to: 0.3
+P_N is set to: 0.167
+teta is set to: 0.1
+teta is set to: 0.14
+teta is set to: 0.245
+teta is set to: 0.3
+P_N is set to: 0.234
+teta is set to: 0.1
+teta is set to: 0.14
+teta is set to: 0.245
+teta is set to: 0.3
 >> Salvo i risultati...
 >> Risultati salvati in test_general_results/
 >> Creo il grafico...
 >> Grafico creato e salvato in  test_general_results/
 >> Test terminato
 >> Stampo il dataframe:
-   Thresholds  Network Polarization  Virality
-0       0.150                   0.2       0.9
-1       0.174                   0.2       0.9
-2       0.150                   0.5       1.0
-3       0.174                   0.5       1.0
+    Thresholds  Network Polarization  Virality
+0        0.100                 0.100      0.80
+1        0.140                 0.100      0.90
+2        0.245                 0.100      0.75
+3        0.300                 0.100      0.70
+4        0.100                 0.140      0.95
+5        0.140                 0.140      0.95
+6        0.245                 0.140      0.90
+7        0.300                 0.140      0.50
+8        0.100                 0.167      0.95
+9        0.140                 0.167      1.00
+10       0.245                 0.167      0.95
+11       0.300                 0.167      0.75
+12       0.100                 0.234      0.90
+13       0.140                 0.234      0.85
+14       0.245                 0.234      0.85
+15       0.300                 0.234      0.65
 >> Spengo il sistema...

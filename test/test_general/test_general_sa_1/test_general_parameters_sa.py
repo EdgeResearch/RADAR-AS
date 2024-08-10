@@ -1,16 +1,16 @@
 import numpy as np
-class TestGeneralParametes:
+class SuperAgentTestGeneralParametes:
     network_polarization = np.linspace(0, 1, num=13)
     opinion_polarization = 0
-    thresholds = [0.150, 0.174, 0.198, 0.222, 0.246, 0.270, 0.294, 0.318, 0.342, 0.366, 0.390, 0.414]
-    path = "test_general_results/"
+    thresholds = [0.270, 0.342, 0.414]
+    path = "test_general_sa_1/test_general_sa_1_result/"
     number_of_iterations = 100
     echo_chamber_fraction = 0.20
     opinion_metric_value = 0.5
-    opinion_metric_steps = [0.01, 0.04, 0.08, 0.10, 0.12, 0.16, 0.20, 0.33, 0.66]
+    opinion_metric_step = 0.10
     nb_nodes = 100
     total_ticks = 100
-    warning = "global"
+    warning = True
     node_range_static_b = 0.05
     node_range = 0.10
     choose_method = "degree"
@@ -128,7 +128,7 @@ class NetlogoCommands:
         self.netlogo.command("set opinion-metric-step {}".format(value))
 
     def set_warning(self, value):
-        if (value == "global"):
+        if value:
             self.netlogo.command("set global-warning true")
         else:
             self.netlogo.command("set global-warning false")

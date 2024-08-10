@@ -71,7 +71,7 @@
                        placeholder="Opinion Polarization" value="0">
                 <div id="opinion-polarization-info" class="form-info">
                     <p>Indica quanto gli utenti, in relazione ad una opinione, sono più inclini a condividerne le
-                        vedute.</p>
+                        vedute. Tecnicamente si decide di quanto nodi all’interno di un cluster hanno una soglia di attivazione più bassa rispetto alla media, e quindi si attivano più facilmente.</p>
                     <ul>
                         <li><b>Dominio:</b> &Ropf;[0,1]</li>
                     </ul>
@@ -87,7 +87,7 @@
                        pattern="^(\d+(\.\d+)?)(,\s*\d+(\.\d+)?)*$"
                        placeholder="Esempio: 0.150, 0.174, 0.198">
                 <div id="network-polarization-info" class="form-info">
-                    <p>Indica quanto gli utenti sono connessi gli uni con gli altri rispetto al resto del network.
+                    <p>Indica quanto gli utenti del cluster sono connessi gli uni con gli altri rispetto al resto del network.
                         Tecnicamente è la densità di connessioni interne al cluster.</p>
                     <ul>
                         <li><b>Dominio:</b> &Ropf;[0,1]</li>
@@ -128,7 +128,7 @@
                 </div>
             </div>
         </div>
-        <div class="row form-row" id="superagent-parameters-container">
+        <div class="row form-row" id="superagent-parameters-container" style="display: none">
             <div class="col-12 text-center mb-3">
                 <h5 style="font-weight: bold; color: #C1111F; text-decoration-line: underline;">Parametri Super
                     Agent:</h5>
@@ -143,7 +143,7 @@
                     </ul>
 
                     <div id="warning-info" class="form-info">
-                        <p>Indica se il warning può essere globale o meno</p>
+                        <p>Attivando il global-warning si avverte il nodo (l'utente) che la notizia che sta per leggere non ha fonti verificate, e quindi può essere una fake news.</p>
                     </div>
                 </div>
             </div>
@@ -155,7 +155,10 @@
                     <input type="number" class="form-control" id="node-range-static-b" name="node-range-static-b"
                            placeholder="node-range-static-b value" value="0.05">
                     <div id="node-range-static-b-info" class="form-info">
-                        <p>Indica la frazione dei nodi a cui il super-agent obbliga il mantenimento dell’opinione B</p>
+                        <p>Indica la frazione dei nodi a cui il super-agent obbliga il mantenimento dell’opinione B, ovvero favorevole alla notizia vera.</p>
+                        <ul>
+                            <li><b>Dominio:</b> &Ropf;[0,1]</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -169,6 +172,9 @@
                            placeholder="node-range value" value="0.10">
                     <div id="node-range-info" class="form-info">
                         <p>Indica la frazione dei nodi a cui si collega il super-agent</p>
+                        <ul>
+                            <li><b>Dominio:</b> &Ropf;[0,1]</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -183,19 +189,27 @@
                             <option value="page-rank">page-rank</option>
                     </select>
                     <div id="choose-method-info" class="form-info">
-                        <p>Determina il metodo di scelta dei collega- menti che crea il super-agent</p>
+                        <p>Determina il metodo di scelta dei collegamenti che crea il super-agent</p>
+                        <ul>
+                            <li><b>deegree</b>, la scelta dipende dal numero di collegamenti (o archi) che ha un nodo con altri.</li>
+                            <li><b>betweenness</b>, che misura quante volte il nodo funge da punto di passaggio o intermediario nei percorsi più brevi tra altri due nodi della rete.</li>
+                            <li><b>page-rank</b>, stabilisce che un nodo è importante se è collegato a molti altri nodi importanti, consideranto quantità e qualità di questi collegamenti.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="col-md-6 col-12" style="margin-top: 0.8em">
                 <div class="input-container">
-                    <label for="warning-impact" class="label-field">warning_impact</label>
+                    <label for="warning-impact" class="label-field">warning-impact</label>
                     <span class="info-field" id="warning-impact-info-icon">info<i
                             class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
                     <input type="number" class="form-control" id="warning-impact" name="warning-impact"
                            placeholder="warning-impact value" value="0.10">
                     <div id="warning-impact-info" class="form-info">
-                        <p>To define</p>
+                        <p>Valore che regola l'influenza del warning nei nodi con opinione di tipo A, ovvero favorevoli alla fake news. Più il valore è alto, più è efficiente il warning.</p>
+                        <ul>
+                            <li><b>Dominio:</b> &Ropf;[0,1]</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -207,7 +221,10 @@
                     <input type="number" class="form-control" id="warning-impact-neutral" name="warning-impact-neutral"
                            placeholder="warning-impact-neutral value" value="0.30">
                     <div id="warning-impact-neutral-info" class="form-info">
-                        <p>To define</p>
+                        <p>Valore che regola l'influenza del warning nei nodi con opinione neutrale.Più il valore è alto, più è efficiente il warning.</p>
+                        <ul>
+                            <li><b>Dominio:</b> &Ropf;[0,1]</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -219,7 +236,10 @@
                     <input type="number" class="form-control" id="sa-delay" name="sa-delay"
                            placeholder="sa-delay value" value="5">
                     <div id="sa-delay-info" class="form-info">
-                        <p>To define</p>
+                        <p>Indica dopo quanti tick di simulazione pu`o intervenire il super-agent.</p>
+                        <ul>
+                            <li>Dominio: n > 0</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -232,7 +252,7 @@
             </div>
         </div>
         <div class="col-xs-12 col-md-6">
-            <button class="menuButton" id="startButton" onclick="start_test_1()">
+            <button class="menuButton" id="startButton" onclick='selectAndStartTest()'>
                 <a><h4 class="buttonText">Avvia il Test <i class="fa-solid fa-circle-play"></i></h4></a>
             </button>
         </div>
@@ -247,18 +267,14 @@
     </div>
 </div>
 <script>
-    function startLog() {
-        var logBox = document.getElementById("log-box");
-        let count = 0;
-        const interval = setInterval(() => {
-            if (count < 20) {
-                logBox.innerHTML += ">> Linea " + count + "<br>";
-                logBox.scrollTop = logBox.scrollHeight; // Scrolla automaticamente alla fine
-                count++;
-            } else {
-                clearInterval(interval);
-            }
-        }, 1000);
+    function selectAndStartTest() {
+        if (document.getElementById("superagent").checked){
+            console.log("Calling start_test_sa_1");
+            start_test_sa_1()
+        } else {
+            console.log("Calling start_test_1");
+            start_test_1()
+        }
     }
 </script>
 <!-- Bootstrap JS and dependencies -->

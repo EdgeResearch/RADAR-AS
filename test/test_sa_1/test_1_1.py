@@ -32,7 +32,7 @@ total_ticks = netlogoCommands.get_total_ticks()
 
 ticks = netlogoCommands.get_total_ticks()
 ticks = int(ticks)
-print("Sono qua")
+
 dql = DeepQLearning()
 
 tresholds = test_sa_1.tresholds

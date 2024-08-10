@@ -4,9 +4,11 @@ from bottle import Bottle, run, request, static_file, template, response
 import sys
 import os
 import json
-from test.test_general import test_general_1, utils, test_general_2
+from test.test_general import utils, test_general_2, test_general_1
 from test.test_general.test_general_parameters import TestGeneralParametes
-from test.test_general.utils import Tee
+from test_general_sa_1.test_general_parameters_sa import SuperAgentTestGeneralParametes
+from test_general_sa_1 import test_general_sa_1
+from test.test_general.utils import Tee, LogManager
 
 app = Bottle()
 
@@ -215,6 +217,124 @@ def submit_test_2():
         yield json.dumps(final_log_message) + "\n"
 
     return start_test_2()
+
+
+@app.post('/submit_test_sa_1')
+def submit_test_sa_1():
+    response.content_type = 'text/event-stream'
+    response.cache_control = 'no-cache'
+
+    def start_test_sa_1():
+        testParameters = SuperAgentTestGeneralParametes()
+        # Crea un'istanza di Tee per gestire i log su terminale e file simultaneamente
+        path = testParameters.path
+        testParameters.set_path(path)
+
+        log_manager = LogManager(path + 'log.txt')
+
+        inputParameters = request.json
+        ticks = int(inputParameters['ticks'])
+        iterations = int(inputParameters['iterations'])
+        opinion_polarization = float(inputParameters['opinion_polarization'])
+        network_polarization = inputParameters['network_polarization']
+        thresholds = inputParameters['thresholds']
+
+        network_polarization = [float(value) for value in network_polarization.split(",")]
+        thresholds = [float(value) for value in thresholds.split(",")]
+
+        warning = inputParameters['warning']
+        node_range_static_b = inputParameters['node_range_static_b']
+        node_range = inputParameters['node_range']
+        choose_method = inputParameters['choose_method']
+        warning_impact = inputParameters['warning_impact']
+        warning_impact_neutral = inputParameters['warning_impact_neutral']
+        sa_delay = inputParameters['sa_delay']
+
+        log_messages = [
+            {"status": "in_progress", "value": f"Numero di Ticks: {ticks}"},
+            {"status": "in_progress", "value": f"Numero di Iterazioni: {iterations}"},
+            {"status": "in_progress", "value": f"Opinion Polarization: {opinion_polarization}"},
+            {"status": "in_progress", "value": f"Network Polarization: {network_polarization}"},
+            {"status": "in_progress", "value": f"Thresholds Polarization: {thresholds}"},
+            {"status": "in_progress", "value": f"warning: {warning}"},
+            {"status": "in_progress", "value": f"node_range_static_b: {node_range_static_b}"},
+            {"status": "in_progress", "value": f"node_range: {node_range}"},
+            {"status": "in_progress", "value": f"choose_method: {choose_method}"},
+            {"status": "in_progress", "value": f"warning_impact: {warning_impact}"},
+            {"status": "in_progress", "value": f"warning_impact_neutral: {warning_impact_neutral}"},
+            {"status": "in_progress", "value": f"sa_delay: {sa_delay}"},
+
+        ]
+        for msg in log_messages:
+            print(msg["value"])
+            log_manager.insert_line(msg["value"])
+            yield json.dumps(msg) + "\n"
+            time.sleep(0.5)
+
+        testParameters.set_total_ticks(ticks)
+        testParameters.set_number_of_iterations(iterations)
+        testParameters.set_opinion_polarization(opinion_polarization)
+        testParameters.set_network_polarization(network_polarization)
+        testParameters.set_thresholds(thresholds)
+        testParameters.set_warning(warning)
+        testParameters.set_node_range_static_b(node_range_static_b)
+        testParameters.set_node_range(node_range)
+        testParameters.set_choose_method(choose_method)
+        testParameters.set_warning_impact(warning_impact)
+        testParameters.set_warning_impact_neutral(warning_impact_neutral)
+        testParameters.set_sa_delay(sa_delay)
+
+        log_message = {"status": "in_progress", "value": ">> Carico il modello di netlogo..."}
+        print(log_message["value"])
+        log_manager.insert_line(log_message["value"])
+        yield json.dumps(log_message) + "\n"
+
+        netlogo, netlogoCommands = test_general_sa_1.load_sim_model()
+
+        log_messages = [
+            {"status": "in_progress", "value": ">> Modello caricato"},
+            {"status": "in_progress", "value": ">> Avvio il test..."},
+        ]
+
+        for msg in log_messages:
+            print(msg["value"])
+            log_manager.insert_line(msg["value"])
+            yield json.dumps(msg) + "\n"
+            time.sleep(1)
+
+        dataframe, img_chart = test_general_sa_1.start_test_sa_1(netlogo, netlogoCommands, testParameters)
+
+        log_message = {"status": "in_progress", "value": ">> Test terminato"}
+        print(log_message["value"])
+        log_manager.insert_line(log_message["value"])
+        yield json.dumps(log_message) + "\n"
+
+        data_for_chart = utils.setup_data_for_chart(dataframe, "Thresholds")
+
+        time.sleep(1)
+        log_message = {"status": "in_progress", "value": ">> Spengo il sistema..."}
+        print(log_message["value"])
+        log_manager.insert_line(log_message["value"])
+        yield json.dumps(log_message) + "\n"
+
+        netlogo.kill_workspace()
+
+        output = log_manager.get_contents()
+        log_manager.clear_log()
+
+        print(f"Stampo l'output: {output}")
+
+        response_data = {
+            "data_for_chart": data_for_chart,
+            "img_chart": img_chart,
+            "log_output": output
+        }
+
+        final_log_message = {"status": "done", "value": response_data}
+        yield json.dumps(final_log_message) + "\n"
+
+
+    return start_test_sa_1()
 
 
 @app.route('/home')

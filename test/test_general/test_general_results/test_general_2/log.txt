@@ -1,9 +1,9 @@
 Numero di Tick: 10
 Numero di Iterazioni: 10
 Opinion Polarization: 0.0
-Network Polarization: [0.5, 0.7]
-Treshold: 0.150
-Numero di Nodi: [75, 135]
+Network Polarization: [0.0, 0.083, 0.166, 0.25, 0.333, 0.416, 0.5]
+Treshold: 0.270
+Numero di Nodi: [75, 100, 125, 150, 175, 200, 225]
 >> Carico il modello di netlogo...
 >> Carico il modello NetLogo...
 >> MODELLO CARICATO 
@@ -12,12 +12,62 @@ Numero di Nodi: [75, 135]
 >> Recupero i parametri... 
 NUMERO DI ITERAZIONI: 10
 >> PARAMETRI RECUPERATI 
+P_N is set to: 0.0
+nb-nodes is set to: 75.0
+nb-nodes is set to: 100.0
+nb-nodes is set to: 125.0
+nb-nodes is set to: 150.0
+nb-nodes is set to: 175.0
+nb-nodes is set to: 200.0
+nb-nodes is set to: 225.0
+P_N is set to: 0.083
+nb-nodes is set to: 75.0
+nb-nodes is set to: 100.0
+nb-nodes is set to: 125.0
+nb-nodes is set to: 150.0
+nb-nodes is set to: 175.0
+nb-nodes is set to: 200.0
+nb-nodes is set to: 225.0
+P_N is set to: 0.166
+nb-nodes is set to: 75.0
+nb-nodes is set to: 100.0
+nb-nodes is set to: 125.0
+nb-nodes is set to: 150.0
+nb-nodes is set to: 175.0
+nb-nodes is set to: 200.0
+nb-nodes is set to: 225.0
+P_N is set to: 0.25
+nb-nodes is set to: 75.0
+nb-nodes is set to: 100.0
+nb-nodes is set to: 125.0
+nb-nodes is set to: 150.0
+nb-nodes is set to: 175.0
+nb-nodes is set to: 200.0
+nb-nodes is set to: 225.0
+P_N is set to: 0.333
+nb-nodes is set to: 75.0
+nb-nodes is set to: 100.0
+nb-nodes is set to: 125.0
+nb-nodes is set to: 150.0
+nb-nodes is set to: 175.0
+nb-nodes is set to: 200.0
+nb-nodes is set to: 225.0
+P_N is set to: 0.416
+nb-nodes is set to: 75.0
+nb-nodes is set to: 100.0
+nb-nodes is set to: 125.0
+nb-nodes is set to: 150.0
+nb-nodes is set to: 175.0
+nb-nodes is set to: 200.0
+nb-nodes is set to: 225.0
 P_N is set to: 0.5
 nb-nodes is set to: 75.0
-nb-nodes is set to: 135.0
-P_N is set to: 0.7
-nb-nodes is set to: 75.0
-nb-nodes is set to: 135.0
+nb-nodes is set to: 100.0
+nb-nodes is set to: 125.0
+nb-nodes is set to: 150.0
+nb-nodes is set to: 175.0
+nb-nodes is set to: 200.0
+nb-nodes is set to: 225.0
 >> TEST TERMINATO
 >> Salvo i risultati...
 >> Risultati salvati in test_general_results/
@@ -25,9 +75,54 @@ nb-nodes is set to: 135.0
 >> Grafico creato e salvato in  test_general_results/
 >> Test terminato
 >> Stampo il dataframe:
-   Nodes  Network Polarization  Virality
-0   75.0                   0.5       0.7
-1  135.0                   0.5       1.0
-2   75.0                   0.7       0.7
-3  135.0                   0.7       1.0
+    Nodes  Network Polarization  Virality
+0    75.0                 0.000       0.9
+1   100.0                 0.000       0.5
+2   125.0                 0.000       0.4
+3   150.0                 0.000       0.0
+4   175.0                 0.000       0.0
+5   200.0                 0.000       0.0
+6   225.0                 0.000       0.0
+7    75.0                 0.083       0.8
+8   100.0                 0.083       0.6
+9   125.0                 0.083       0.6
+10  150.0                 0.083       0.3
+11  175.0                 0.083       0.1
+12  200.0                 0.083       0.0
+13  225.0                 0.083       0.0
+14   75.0                 0.166       0.9
+15  100.0                 0.166       0.6
+16  125.0                 0.166       0.3
+17  150.0                 0.166       0.3
+18  175.0                 0.166       0.1
+19  200.0                 0.166       0.0
+20  225.0                 0.166       0.0
+21   75.0                 0.250       0.8
+22  100.0                 0.250       1.0
+23  125.0                 0.250       0.4
+24  150.0                 0.250       0.4
+25  175.0                 0.250       0.0
+26  200.0                 0.250       0.0
+27  225.0                 0.250       0.0
+28   75.0                 0.333       0.8
+29  100.0                 0.333       0.5
+30  125.0                 0.333       0.5
+31  150.0                 0.333       0.2
+32  175.0                 0.333       0.1
+33  200.0                 0.333       0.0
+34  225.0                 0.333       0.0
+35   75.0                 0.416       1.0
+36  100.0                 0.416       0.8
+37  125.0                 0.416       0.5
+38  150.0                 0.416       0.3
+39  175.0                 0.416       0.3
+40  200.0                 0.416       0.0
+41  225.0                 0.416       0.0
+42   75.0                 0.500       0.9
+43  100.0                 0.500       0.8
+44  125.0                 0.500       0.7
+45  150.0                 0.500       0.3
+46  175.0                 0.500       0.3
+47  200.0                 0.500       0.1
+48  225.0                 0.500       0.0
 >> Spengo il sistema...

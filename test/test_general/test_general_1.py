@@ -20,7 +20,6 @@ def load_sim_model():
 
     return netlogo, netlogoCommands
 
-
 def start_test_1(netlogo, netlogoCommands, testParameters):
     print(">> Recupero i parametri... ")
     # Recupera i parametri
@@ -75,8 +74,8 @@ def start_test_1(netlogo, netlogoCommands, testParameters):
 
 def plot_chart(testParameters):
     thresholds = testParameters.thresholds
-    markers = ['o-', 's--', 'D:']
-    colorarray=['black', 'dimgrey', 'grey']
+    markers = ['o-', 's--', 'D:', "^-", "v--", "o--", "s-", "D--", "^:", "v-", "o--", "s:"]
+    colorarray=['black','dimgrey','grey','darkgrey','lightgrey','darkslategrey','lightslategrey','slategrey', 'silver', 'gainsboro']
 
     path = testParameters.path
     df = pd.read_csv(path + 'test_general_1.csv')
@@ -117,7 +116,7 @@ def plot_chart(testParameters):
 
     # Salvare il grafico in un oggetto BytesIO
     buffer = io.BytesIO()
-    plt.savefig(buffer, format='png', bbox_inches='tight')
+    plt.savefig(buffer, format='jpeg', bbox_inches='tight', dpi=80)
     buffer.seek(0)
 
     # Convertire il contenuto del buffer in una stringa base64

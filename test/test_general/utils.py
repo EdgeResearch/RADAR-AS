@@ -28,6 +28,31 @@ class Tee:
     def get_value(self):
         return self.string_buffer.getvalue()
 
+
+
+# Classe per la gestione manuale dell'output su terminale e file di log
+class LogManager:
+    def __init__(self, filepath):
+        self.filepath = filepath
+        # Assicurarsi che il file esista e sia vuoto all'inizio
+        with open(self.filepath, 'a') as file:
+            pass
+
+    def insert_line(self, message):
+        """Inserisce una nuova riga nel file di log."""
+        with open(self.filepath, 'a') as file:
+            file.write(message + '\n')
+
+    def get_contents(self):
+        """Recupera tutto il contenuto testuale del file di log."""
+        with open(self.filepath, 'r') as file:
+            return file.read()
+
+    def clear_log(self):
+        """Svuota il contenuto del file di log."""
+        with open(self.filepath, 'w') as file:
+            pass
+
 def setup_data_for_chart(dataframe, dataLabel):
     print(">> Stampo il dataframe:")
     print(dataframe)

@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
     markers = ['o-', 's--', 'D:', "^-", "v--", "o--", "s-", "D--", "^:", "v-", "o--", "s:"]
 
-    path = "test_sa_1_3_results/"
+    path = "test_sa_1_1_results/"
     df1 = pd.read_csv(path + 'test_1.csv')
     df2 = pd.read_csv(path + 'test_2.csv')
     df3 = pd.read_csv(path + 'test_3.csv')

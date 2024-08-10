@@ -127,7 +127,7 @@ def plot_chart(testParameters):
 
     # Salvare il grafico in un oggetto BytesIO
     buffer = io.BytesIO()
-    plt.savefig(buffer, format='png', bbox_inches='tight')
+    plt.savefig(buffer, format='jpeg', bbox_inches='tight', dpi=80)
     buffer.seek(0)
 
     # Convertire il contenuto del buffer in una stringa base64
