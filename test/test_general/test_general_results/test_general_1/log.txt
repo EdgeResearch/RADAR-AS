@@ -1,26 +1,20 @@
-Number of Ticks: 40
-Number of Iterazioni: 40
+Number of Ticks: 10
+Number of Iterazioni: 10
 Opinion Polarization: 0.0
-Network Polarization: [0.0, 0.2, 0.4]
-Thresholds: [0.27, 0.342, 0.414]
+Network Polarization: [0.2, 0.4]
+Thresholds: [0.37, 0.41]
 >> Loading the NetLogo model...
 >> Model Loaded
 >> Starting the test...
 >> Retrieving the parameters... 
-NUMERO DI ITERAZIONI: 40
+NUMERO DI ITERAZIONI: 10
 >> Parameters Retrieved
-P_N is set to: 0.0
-teta is set to: 0.27
-teta is set to: 0.342
-teta is set to: 0.414
 P_N is set to: 0.2
-teta is set to: 0.27
-teta is set to: 0.342
-teta is set to: 0.414
+teta is set to: 0.37
+teta is set to: 0.41
 P_N is set to: 0.4
-teta is set to: 0.27
-teta is set to: 0.342
-teta is set to: 0.414
+teta is set to: 0.37
+teta is set to: 0.41
 >> Saving the results...
 >> Result saved in test_general_results/
 >> Creating the graph...
@@ -28,13 +22,8 @@ teta is set to: 0.414
 >> Test completed
 >> Stampo il dataframe:
    Thresholds  Network Polarization  Virality
-0       0.270                   0.0     0.800
-1       0.342                   0.0     0.150
-2       0.414                   0.0     0.025
-3       0.270                   0.2     0.825
-4       0.342                   0.2     0.375
-5       0.414                   0.2     0.025
-6       0.270                   0.4     0.925
-7       0.342                   0.4     0.500
-8       0.414                   0.4     0.025
+0        0.37                   0.2       0.0
+1        0.41                   0.2       0.0
+2        0.37                   0.4       0.0
+3        0.41                   0.4       0.0
 >> Shutting down the system...

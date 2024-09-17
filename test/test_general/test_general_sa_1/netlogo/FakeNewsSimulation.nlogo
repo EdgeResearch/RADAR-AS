@@ -188,9 +188,15 @@ to-report get-random-influent-a-nodes [node-span]
   let agent-list n-of node-span basic-agents
   let x 0
   let elements turtle-set agent-list
+  let to_take node-span / 10
+  let out_c 0
+  set out_c to_take * 0.5
   ;; Conta quanti nodi tra quelli selezionati sono attivi
   ask elements [
-    if is-a-active = true [
+    ifelse (is-in-cluster = false) and (x < out_c) [
+      set x x + 1
+    ]
+    [
       set x x + 1
     ]
   ]

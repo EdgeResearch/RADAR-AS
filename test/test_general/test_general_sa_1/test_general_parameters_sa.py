@@ -75,6 +75,8 @@ class NetlogoCommands:
     PAGERANK = "page-rank"
     DEGREE = "degree"
     DEGREE_IN_CLUSTER = "degree-in-cluster"
+    RANDOM = "random"
+
 
     def __init__(self, netlogo, modelfile):
         self.netlogo = netlogo
@@ -108,6 +110,8 @@ class NetlogoCommands:
                 return self.netlogo.report('get-most-influent-a-nodes-by-betweenness {}'.format(node_span))
             case self.DEGREE_IN_CLUSTER:
                 return self.netlogo.report('get-most-influent-a-nodes-by-degree-in-cluster {}'.format(node_span))
+            case self.RANDOM:
+                 return self.netlogo.report('get-random-influent-a-nodes {}'.format(node_span))
 
 
 
