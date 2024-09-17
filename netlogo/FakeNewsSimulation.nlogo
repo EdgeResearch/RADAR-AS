@@ -167,6 +167,22 @@ to-report get-most-influent-a-nodes-by-betweenness [node-span]
   report x / 10
 end
 
+
+;; Function used to get the fraction of the top nodes by degree that have opinion A and are in the cluster
+to-report get-most-influent-a-nodes-by-degree-in-cluster [node-span]
+		let agent-list sort-on [(- degree)] basic-agents
+		let result sublist agent-list 0 min list node-span (length agent-list)
+		let x 0
+		let elements turtle-set result
+		;; Conta i nodi che sono attivi e che fanno parte del cluster
+		ask elements [
+			if (is-a-active = true) and (is-in-cluster = true) [
+				set x x + 1
+			]
+		]
+		report x / 10
+end
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Layouts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1893,7 +1909,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.2.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

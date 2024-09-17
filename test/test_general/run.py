@@ -24,9 +24,6 @@ def submit_test_1():
     response.content_type = 'text/event-stream'
     response.cache_control = 'no-cache'
 
-    # Rimuovere l'intestazione Connection: keep-alive
-    # response.set_header('Connection', 'keep-alive')  # Questo deve essere rimosso
-
     def start_test_1():
         testParameters = TestGeneralParametes()
         # Crea un'istanza di Tee per gestire i log su terminale e file simultaneamente
@@ -48,11 +45,11 @@ def submit_test_1():
             thresholds = [float(value) for value in thresholds.split(",")]
 
             log_messages = [
-                {"status": "in_progress", "value": f"Numero di Ticks: {ticks}"},
-                {"status": "in_progress", "value": f"Numero di Iterazioni: {iterations}"},
+                {"status": "in_progress", "value": f"Number of Ticks: {ticks}"},
+                {"status": "in_progress", "value": f"Number of Iterazioni: {iterations}"},
                 {"status": "in_progress", "value": f"Opinion Polarization: {opinion_polarization}"},
                 {"status": "in_progress", "value": f"Network Polarization: {network_polarization}"},
-                {"status": "in_progress", "value": f"Thresholds Polarization: {thresholds}"}
+                {"status": "in_progress", "value": f"Thresholds: {thresholds}"}
             ]
 
             for msg in log_messages:
@@ -74,14 +71,14 @@ def submit_test_1():
                 "thresholds": thresholds
             }
 
-            log_message = {"status": "in_progress", "value": ">> Carico il modello di netlogo..."}
+            log_message = {"status": "in_progress", "value": ">> Loading the NetLogo model..."}
             print(log_message["value"])
             yield json.dumps(log_message) + "\n"
             netlogo, netlogoCommands = test_general_1.load_sim_model()
 
             log_messages = [
-                {"status": "in_progress", "value": ">> Modello caricato"},
-                {"status": "in_progress", "value": ">> Avvio il test..."},
+                {"status": "in_progress", "value": ">> Model Loaded"},
+                {"status": "in_progress", "value": ">> Starting the test..."},
             ]
 
             for msg in log_messages:
@@ -91,7 +88,7 @@ def submit_test_1():
 
             dataframe, img_chart = test_general_1.start_test_1(netlogo, netlogoCommands, testParameters)
 
-            log_message = {"status": "in_progress", "value": ">> Test terminato"}
+            log_message = {"status": "in_progress", "value": ">> Test completed"}
             print(log_message["value"])
             yield json.dumps(log_message) + "\n"
 
@@ -99,7 +96,7 @@ def submit_test_1():
 
             time.sleep(1)
 
-            log_message = {"status": "in_progress", "value": ">> Spengo il sistema..."}
+            log_message = {"status": "in_progress", "value": ">> Shutting down the system..."}
             print(log_message["value"])
             yield json.dumps(log_message) + "\n"
 
@@ -119,8 +116,9 @@ def submit_test_1():
         }
 
         final_log_message = {"status": "done", "value": response_data}
+        print(response_data)
         yield json.dumps(final_log_message) + "\n"
-
+        
     return start_test_1()
 
 
@@ -150,12 +148,12 @@ def submit_test_2():
             nb_nodes = [int(value) for value in nb_nodes.split(",")]
 
             log_messages = [
-                {"status": "in_progress", "value": f"Numero di Tick: {ticks}"},
-                {"status": "in_progress", "value": f"Numero di Iterazioni: {iterations}"},
+                {"status": "in_progress", "value": f"Number of Tick: {ticks}"},
+                {"status": "in_progress", "value": f"Number of Iterazioni: {iterations}"},
                 {"status": "in_progress", "value": f"Opinion Polarization: {opinion_polarization}"},
                 {"status": "in_progress", "value": f"Network Polarization: {network_polarization}"},
                 {"status": "in_progress", "value": f"Treshold: {threshold}"},
-                {"status": "in_progress", "value": f"Numero di Nodi: {nb_nodes}"}
+                {"status": "in_progress", "value": f"Total Nodes: {nb_nodes}"}
             ]
 
             for msg in log_messages:
@@ -170,14 +168,14 @@ def submit_test_2():
             testParameters.set_thresholds(threshold)
             testParameters.set_nb_nodes(nb_nodes)
 
-            log_message = {"status": "in_progress", "value": ">> Carico il modello di netlogo..."}
+            log_message = {"status": "in_progress", "value": ">> Loading the NetLogo model..."}
             print(log_message["value"])
             yield json.dumps(log_message) + "\n"
             netlogo, netlogoCommands = test_general_2.load_sim_model()
 
             log_messages = [
-                {"status": "in_progress", "value": ">> Modello caricato"},
-                {"status": "in_progress", "value": ">> Avvio il test..."},
+                {"status": "in_progress", "value": ">> Model Loaded"},
+                {"status": "in_progress", "value": ">> Starting the test..."},
             ]
 
             for msg in log_messages:
@@ -187,14 +185,14 @@ def submit_test_2():
 
             dataframe, img_chart = test_general_2.start_test_2(netlogo, netlogoCommands, testParameters)
 
-            log_message = {"status": "in_progress", "value": ">> Test terminato"}
+            log_message = {"status": "in_progress", "value": ">> Test completed"}
             print(log_message["value"])
             yield json.dumps(log_message) + "\n"
 
             data_for_chart = utils.setup_data_for_chart(dataframe, "Nodes")
 
             time.sleep(1)
-            log_message = {"status": "in_progress", "value": ">> Spengo il sistema..."}
+            log_message = {"status": "in_progress", "value": ">> Shutting down the system..."}
             print(log_message["value"])
             yield json.dumps(log_message) + "\n"
 
@@ -243,12 +241,12 @@ def submit_test_sa_1():
         thresholds = [float(value) for value in thresholds.split(",")]
 
         warning = inputParameters['warning']
-        node_range_static_b = inputParameters['node_range_static_b']
-        node_range = inputParameters['node_range']
+        node_range_static_b = float(inputParameters['node_range_static_b'])
+        node_range = float(inputParameters['node_range'])
         choose_method = inputParameters['choose_method']
-        warning_impact = inputParameters['warning_impact']
-        warning_impact_neutral = inputParameters['warning_impact_neutral']
-        sa_delay = inputParameters['sa_delay']
+        warning_impact = float(inputParameters['warning_impact'])
+        warning_impact_neutral = float(inputParameters['warning_impact_neutral'])
+        sa_delay = int(inputParameters['sa_delay'])
 
         log_messages = [
             {"status": "in_progress", "value": f"Numero di Ticks: {ticks}"},
@@ -321,8 +319,6 @@ def submit_test_sa_1():
 
         output = log_manager.get_contents()
         log_manager.clear_log()
-
-        print(f"Stampo l'output: {output}")
 
         response_data = {
             "data_for_chart": data_for_chart,

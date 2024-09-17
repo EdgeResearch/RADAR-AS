@@ -25,8 +25,7 @@
                                                                        style="color: #003049">TEST 1</h1></div>
             <div class="col-12 col-md-5 text-center text-md-left"><img style="height: 15vh"
                                                                        src="../static/assets/dialog.png"></div>
-            <div class="col-12 text-center"><h4 class="mb-5">Come cambia la Viralità al variare della network
-                polarization e Thresholds (creduloneria)?</h4></div>
+            <div class="col-12 text-center"><h4 class="mb-5">How does Virality change as network polarization and Thresholds (credulity) change?</h4></div>
         </div>
         <div class="row form-row">
             <div class="col-md-6 col-12">
@@ -37,10 +36,10 @@
                     <input type="number" class="form-control" id="ticks" name="ticks" placeholder="Number of Ticks"
                            value="100">
                     <div id="ticks-info" class="form-info">
-                        <p>Determinano la durata della simulazione</p>
+                        <p>Ticks represent the time instants of the simulation and determine the duration of the simulation.</p>
                         <ul>
-                            <li><b>Dominio: n > 0</b></li>
-                            <li>Valore di Default: 100</li>
+                            <li><b>Domain: n > 0</b></li>
+                            <li>Default Value: 100</li>
                         </ul>
                     </div>
                 </div>
@@ -53,10 +52,10 @@
                     <input type="number" class="form-control" id="iterations" name="iterations"
                            placeholder="Number of Iteration" value="100">
                     <div id="iterations-info" class="form-info">
-                        <p>Determinano la durata della simulazione</p>
+                        <p>Number of iterations of the simulation.</p>
                         <ul>
-                            <li><b>Dominio: n > 0</b></li>
-                            <li>Valore di Default: 100</li>
+                            <li><b>Domain: n > 0</b></li>
+                            <li>Default Value: 100</li>
                         </ul>
                     </div>
                 </div>
@@ -70,10 +69,10 @@
                 <input type="number" class="form-control" id="opinion_polarization" name="opinion_polarization"
                        placeholder="Opinion Polarization" value="0">
                 <div id="opinion-polarization-info" class="form-info">
-                    <p>Indica quanto gli utenti, in relazione ad una opinione, sono più inclini a condividerne le
-                        vedute. Tecnicamente si decide di quanto nodi all’interno di un cluster hanno una soglia di attivazione più bassa rispetto alla media, e quindi si attivano più facilmente.</p>
+                    <p>It indicates how much the users, in relation to an opinion, are more likely to share its views.
+                        Technically states how much nodes inside the echo-chamber have a lower threshold activation than the average, and so they are more easily influenceable.</p>
                     <ul>
-                        <li><b>Dominio:</b> &Ropf;[0,1]</li>
+                        <li><b>Domain:</b> &Ropf;[0,1]</li>
                     </ul>
                 </div>
             </div>
@@ -85,13 +84,13 @@
                         class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
                 <input type="text" class="form-control" id="network_polarization" name="network_polarization"
                        pattern="^(\d+(\.\d+)?)(,\s*\d+(\.\d+)?)*$"
-                       placeholder="Esempio: 0.150, 0.174, 0.198">
+                       placeholder="Example: 0.150, 0.174, 0.198">
                 <div id="network-polarization-info" class="form-info">
-                    <p>Indica quanto gli utenti del cluster sono connessi gli uni con gli altri rispetto al resto del network.
-                        Tecnicamente è la densità di connessioni interne al cluster.</p>
+                    <p>It indicates how connected users in the cluster are to each other compared to the rest of the network.
+                        Technically, it is the density of connections within the cluster.</p>
                     <ul>
-                        <li><b>Dominio:</b> &Ropf;[0,1]</li>
-                        <li>È possibile inserire <b>più valori separati da una virgola.</b> [0.1,0.2, etc.]</li>
+                        <li><b>Domain:</b> &Ropf;[0,1]</li>
+                        <li><b>Multiple values, separated by a comma </b>, can be entered in the following format: [0.1,0.2, etc.]</li>
                     </ul>
                 </div>
             </div>
@@ -103,12 +102,12 @@
                         class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
                 <input type="text" class="form-control" id="thresholds" name="thresholds"
                        pattern="^(\d+(\.\d+)?)(,\s*\d+(\.\d+)?)*$"
-                       placeholder="Esempio: 0.150, 0.174, 0.198">
+                       placeholder="Example: 0.150, 0.174, 0.198">
                 <div id="thresholds-info" class="form-info">
-                    <p>Indica la soglia di attivazione.</p>
+                    <p>Determines the activation threshold of the node.</p>
                     <ul>
-                        <li><b>Dominio:</b> &Ropf;[0,1]</li>
-                        <li>È possibile inserire <b>più valori separati da una virgola.</b> [0.1,0.2, etc.]</li>
+                        <li><b>Domain:</b> &Ropf;[0,1]</li>
+                        <li><b>Multiple values, separated by a comma </b>, can be entered in the following format: [0.1,0.2, etc.]</li>
                     </ul>
                 </div>
             </div>
@@ -123,15 +122,13 @@
                     </li>
                 </ul>
                 <div id="superagent-info" class="form-info">
-                    <p>Per attivare l'utilizzo di un Super Agent, basato su Deep Reinforcement Learning atto a limitare
-                        la viralità </p>
+                    <p>Enable the use of a Super-Agent, based on Deep Reinforcement Learning act to limit virality </p>
                 </div>
             </div>
         </div>
         <div class="row form-row" id="superagent-parameters-container" style="display: none">
             <div class="col-12 text-center mb-3">
-                <h5 style="font-weight: bold; color: #C1111F; text-decoration-line: underline;">Parametri Super
-                    Agent:</h5>
+                <h5 style="font-weight: bold; color: #C1111F; text-decoration-line: underline;">Super-Agent Parameters:</h5>
             </div>
             <div class="col-md-6 col-12" style="margin-top: 0.8em">
                 <div class="input-container">
@@ -143,7 +140,8 @@
                     </ul>
 
                     <div id="warning-info" class="form-info">
-                        <p>Attivando il global-warning si avverte il nodo (l'utente) che la notizia che sta per leggere non ha fonti verificate, e quindi può essere una fake news.</p>
+                        <p>Contrast action aimed at showing the user (the node) a warning beforehand,
+                            warning him or her that the news he or she is about to read has no verified sources (or comes from an unreliable source), suggesting that it may be fake news.</p>
                     </div>
                 </div>
             </div>
@@ -155,9 +153,9 @@
                     <input type="number" class="form-control" id="node-range-static-b" name="node-range-static-b"
                            placeholder="node-range-static-b value" value="0.05">
                     <div id="node-range-static-b-info" class="form-info">
-                        <p>Indica la frazione dei nodi a cui il super-agent obbliga il mantenimento dell’opinione B, ovvero favorevole alla notizia vera.</p>
+                        <p>It indicates the fraction of nodes to which the super-agent obligates the maintenance of opinion B, i.e. favorable to the true news. In order to counter the spread of fake news.</p>
                         <ul>
-                            <li><b>Dominio:</b> &Ropf;[0,1]</li>
+                            <li><b>Domain:</b> &Ropf;[0,1]</li>
                         </ul>
                     </div>
                 </div>
@@ -171,9 +169,9 @@
                     <input type="number" class="form-control" id="node-range" name="node-range"
                            placeholder="node-range value" value="0.10">
                     <div id="node-range-info" class="form-info">
-                        <p>Indica la frazione dei nodi a cui si collega il super-agent</p>
+                        <p>Define the fraction of nodes on which the super agent acts.</p>
                         <ul>
-                            <li><b>Dominio:</b> &Ropf;[0,1]</li>
+                            <li><b>Domain:</b> &Ropf;[0,1]</li>
                         </ul>
                     </div>
                 </div>
@@ -187,13 +185,16 @@
                             <option value="degree" selected>degree</option>
                             <option value="betweenness">betweenness</option>
                             <option value="page-rank">page-rank</option>
+                            <option value="degree-in-cluster">deegree-in-cluster</option>
                     </select>
                     <div id="choose-method-info" class="form-info">
-                        <p>Determina il metodo di scelta dei collegamenti che crea il super-agent</p>
+                        <p>Determines the selection criteria that the super agent uses to select the nodes to act on.</p>
                         <ul>
-                            <li><b>deegree</b>, la scelta dipende dal numero di collegamenti (o archi) che ha un nodo con altri.</li>
-                            <li><b>betweenness</b>, che misura quante volte il nodo funge da punto di passaggio o intermediario nei percorsi più brevi tra altri due nodi della rete.</li>
-                            <li><b>page-rank</b>, stabilisce che un nodo è importante se è collegato a molti altri nodi importanti, consideranto quantità e qualità di questi collegamenti.</li>
+                            <li><b>deegree</b>, the choice depends on the number of links (or arcs) a node has with others.</li>
+                            <li><b>deegree-in-cluster</b>, select the nodes, within the echo-chamber, with the most connections to others.</li>
+                            <li><b>betweenness</b>, selects based on how often the node serves as a crossing point or intermediary in the shortest paths between two other nodes in the network.</li>
+                            <li><b>random</b>, nodes are selected by a random but “weighted” choice, so as to achieve a balanced and equal representation between nodes outside and inside the echo-chamber.</li>
+                            <li><b>page-rank</b>, selects a node based on its importance, considering quantity and quality of its links.</li>
                         </ul>
                     </div>
                 </div>
@@ -206,9 +207,9 @@
                     <input type="number" class="form-control" id="warning-impact" name="warning-impact"
                            placeholder="warning-impact value" value="0.10">
                     <div id="warning-impact-info" class="form-info">
-                        <p>Valore che regola l'influenza del warning nei nodi con opinione di tipo A, ovvero favorevoli alla fake news. Più il valore è alto, più è efficiente il warning.</p>
+                        <p>Value that adjusts the influence of the warning in nodes with type A opinion, favorable to fake news. The higher the value, the more efficient the restraining action of warning will be.</p>
                         <ul>
-                            <li><b>Dominio:</b> &Ropf;[0,1]</li>
+                            <li><b>Domain:</b> &Ropf;[0,1]</li>
                         </ul>
                     </div>
                 </div>
@@ -221,9 +222,9 @@
                     <input type="number" class="form-control" id="warning-impact-neutral" name="warning-impact-neutral"
                            placeholder="warning-impact-neutral value" value="0.30">
                     <div id="warning-impact-neutral-info" class="form-info">
-                        <p>Valore che regola l'influenza del warning nei nodi con opinione neutrale.Più il valore è alto, più è efficiente il warning.</p>
+                        <p>Value that adjusts the influence of warning in nodes with neutral opinion. The higher the value, the more efficient the restraining action of warning will be.</p>
                         <ul>
-                            <li><b>Dominio:</b> &Ropf;[0,1]</li>
+                            <li><b>Domain:</b> &Ropf;[0,1]</li>
                         </ul>
                     </div>
                 </div>
@@ -234,11 +235,11 @@
                     <span class="info-field" id="sa-delay-info-icon">info<i
                             class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
                     <input type="number" class="form-control" id="sa-delay" name="sa-delay"
-                           placeholder="sa-delay value" value="5">
+                           placeholder="sa-delay value" value="2">
                     <div id="sa-delay-info" class="form-info">
-                        <p>Indica dopo quanti tick di simulazione pu`o intervenire il super-agent.</p>
+                        <p>It indicates after how many simulation ticks the super-agent can intervene.</p>
                         <ul>
-                            <li>Dominio: n > 0</li>
+                            <li>Domain: 0 < n < total-ticks</li>
                         </ul>
                     </div>
                 </div>
@@ -253,7 +254,7 @@
         </div>
         <div class="col-xs-12 col-md-6">
             <button class="menuButton" id="startButton" onclick='selectAndStartTest()'>
-                <a><h4 class="buttonText">Avvia il Test <i class="fa-solid fa-circle-play"></i></h4></a>
+                <a><h4 class="buttonText">Start Test <i class="fa-solid fa-circle-play"></i></h4></a>
             </button>
         </div>
         <div class="col-12 mt-5">

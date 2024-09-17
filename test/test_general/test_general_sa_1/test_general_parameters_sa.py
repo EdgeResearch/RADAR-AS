@@ -74,6 +74,7 @@ class NetlogoCommands:
     BETWENNESS = "betweenness"
     PAGERANK = "page-rank"
     DEGREE = "degree"
+    DEGREE_IN_CLUSTER = "degree-in-cluster"
 
     def __init__(self, netlogo, modelfile):
         self.netlogo = netlogo
@@ -105,6 +106,10 @@ class NetlogoCommands:
                 return self.netlogo.report('get-most-influent-a-nodes-by-page-rank {}'.format(node_span))
             case self.BETWENNESS:
                 return self.netlogo.report('get-most-influent-a-nodes-by-betweenness {}'.format(node_span))
+            case self.DEGREE_IN_CLUSTER:
+                return self.netlogo.report('get-most-influent-a-nodes-by-degree-in-cluster {}'.format(node_span))
+
+
 
     def get_global_opinion_metric_mean(self):
         return self.netlogo.report('get-global-opinion-metric-mean')

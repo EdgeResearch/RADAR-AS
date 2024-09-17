@@ -1,55 +1,40 @@
-Numero di Ticks: 20
-Numero di Iterazioni: 20
+Number of Ticks: 40
+Number of Iterazioni: 40
 Opinion Polarization: 0.0
-Network Polarization: [0.1, 0.14, 0.167, 0.234]
-Thresholds Polarization: [0.1, 0.14, 0.245, 0.3]
->> Carico il modello di netlogo...
->> Modello caricato
->> Avvio il test...
->> Recupero i parametri... 
-NUMERO DI ITERAZIONI: 20
->> PARAMETRI RECUPERATI 
-P_N is set to: 0.1
-teta is set to: 0.1
-teta is set to: 0.14
-teta is set to: 0.245
-teta is set to: 0.3
-P_N is set to: 0.14
-teta is set to: 0.1
-teta is set to: 0.14
-teta is set to: 0.245
-teta is set to: 0.3
-P_N is set to: 0.167
-teta is set to: 0.1
-teta is set to: 0.14
-teta is set to: 0.245
-teta is set to: 0.3
-P_N is set to: 0.234
-teta is set to: 0.1
-teta is set to: 0.14
-teta is set to: 0.245
-teta is set to: 0.3
->> Salvo i risultati...
->> Risultati salvati in test_general_results/
->> Creo il grafico...
->> Grafico creato e salvato in  test_general_results/
->> Test terminato
+Network Polarization: [0.0, 0.2, 0.4]
+Thresholds: [0.27, 0.342, 0.414]
+>> Loading the NetLogo model...
+>> Model Loaded
+>> Starting the test...
+>> Retrieving the parameters... 
+NUMERO DI ITERAZIONI: 40
+>> Parameters Retrieved
+P_N is set to: 0.0
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+P_N is set to: 0.2
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+P_N is set to: 0.4
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+>> Saving the results...
+>> Result saved in test_general_results/
+>> Creating the graph...
+>> Graph created and saved in  test_general_results/
+>> Test completed
 >> Stampo il dataframe:
-    Thresholds  Network Polarization  Virality
-0        0.100                 0.100      0.80
-1        0.140                 0.100      0.90
-2        0.245                 0.100      0.75
-3        0.300                 0.100      0.70
-4        0.100                 0.140      0.95
-5        0.140                 0.140      0.95
-6        0.245                 0.140      0.90
-7        0.300                 0.140      0.50
-8        0.100                 0.167      0.95
-9        0.140                 0.167      1.00
-10       0.245                 0.167      0.95
-11       0.300                 0.167      0.75
-12       0.100                 0.234      0.90
-13       0.140                 0.234      0.85
-14       0.245                 0.234      0.85
-15       0.300                 0.234      0.65
->> Spengo il sistema...
+   Thresholds  Network Polarization  Virality
+0       0.270                   0.0     0.800
+1       0.342                   0.0     0.150
+2       0.414                   0.0     0.025
+3       0.270                   0.2     0.825
+4       0.342                   0.2     0.375
+5       0.414                   0.2     0.025
+6       0.270                   0.4     0.925
+7       0.342                   0.4     0.500
+8       0.414                   0.4     0.025
+>> Shutting down the system...

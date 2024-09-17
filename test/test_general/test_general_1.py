@@ -12,7 +12,7 @@ from test_general_parameters import calculate_fraction
 
 def load_sim_model():
     modelfile = os.path.abspath('../../netlogo/FakeNewsSimulation.nlogo')
-    netlogo = pynetlogo.NetLogoLink(jvm_path="/Users/andrea/Library/Java/JavaVirtualMachines/openjdk-20.0.2/Contents/Home/bin/java")
+    netlogo = pynetlogo.NetLogoLink()
 
     netlogo.load_model(modelfile)
 
@@ -21,7 +21,7 @@ def load_sim_model():
     return netlogo, netlogoCommands
 
 def start_test_1(netlogo, netlogoCommands, testParameters):
-    print(">> Recupero i parametri... ")
+    print(">> Retrieving the parameters... ")
     # Recupera i parametri
     ticks = testParameters.total_ticks
     tresholds = testParameters.thresholds
@@ -39,7 +39,7 @@ def start_test_1(netlogo, netlogoCommands, testParameters):
     netlogoCommands.set_nodes(TestGeneralParametes.nb_nodes)
     netlogoCommands.set_total_ticks(TestGeneralParametes.total_ticks)
 
-    print(">> PARAMETRI RECUPERATI ")
+    print(">> Parameters Retrieved")
 
     global_cascades = []
     global_cascades_means = []
@@ -61,15 +61,15 @@ def start_test_1(netlogo, netlogoCommands, testParameters):
             new_df = pd.DataFrame({"Thresholds": [tresholds[j]], "Network Polarization": [network_polarization[i]],
                                    'Virality': [calculate_fraction(global_cascades)]})
             df = pd.concat([df, new_df], ignore_index=True)
-    print(">> Salvo i risultati...")
+    print(">> Saving the results...")
     filepath = Path(testParameters.path + 'test_general_1.csv')
     filepath.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(filepath, index=False)
-    print(f">> Risultati salvati in {TestGeneralParametes.path}")
+    print(f">> Result saved in {TestGeneralParametes.path}")
 
-    print(f">> Creo il grafico...")
+    print(f">> Creating the graph...")
     img_chart = plot_chart(testParameters)
-    print(f">> Grafico creato e salvato in  {TestGeneralParametes.path}")
+    print(f">> Graph created and saved in  {TestGeneralParametes.path}")
     return df, img_chart
 
 def plot_chart(testParameters):

@@ -75,8 +75,6 @@ def start_test_sa_1(netlogo, netlogoCommands, testParameters):
 
     dql = DeepQLearning()
 
-    network_polarization = [network_polarization[0]]
-
     global_cascades = []
     global_cascades_means = []
     df = pd.DataFrame({"Thresholds": [], "Network Polarization": [], 'Virality': []})
@@ -154,7 +152,7 @@ def plot_chart(testParameters):
 
 
     plt.ylabel("Virality (Global Cascade fraction)")
-    plt.xlabel("Pn (Network Polarization) - Delay SA: 2")
+    plt.xlabel("Pn (Network Polarization)")
 
     # Shrink current axis by 20%
     box = ax.get_position()
