@@ -4,11 +4,13 @@ from bottle import Bottle, run, request, static_file, template, response
 import sys
 import os
 import json
-from test.test_general import utils, test_general_2, test_general_1
-from test.test_general.test_general_parameters import TestGeneralParametes
+#from test.test_general import utils, test_general_2, test_general_1
+import utils, test_general_2, test_general_1
+from test_general_parameters import TestGeneralParametes
+#from test.test_general.test_general_parameters import TestGeneralParametes
 from test_general_sa_1.test_general_parameters_sa import SuperAgentTestGeneralParametes
 from test_general_sa_1 import test_general_sa_1
-from test.test_general.utils import Tee, LogManager
+from utils import Tee, LogManager
 
 app = Bottle()
 
@@ -366,4 +368,4 @@ def server_static(filepath):
 
 
 if __name__ == "__main__":
-    run(app, host='localhost', port=8081, debug=True)
+    run(app, host='localhost', port=7777, debug=True)
