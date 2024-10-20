@@ -31,10 +31,11 @@ def submit_test_1():
         # Crea un'istanza di Tee per gestire i log su terminale e file simultaneamente
         path = testParameters.path + "test_general_1/"
         testParameters.set_path(path)
-        tee = Tee(testParameters.path + os.path.sep + 'log.txt')
+        log_path = testParameters.path + 'log.txt'
+        tee = Tee(log_path)
         # Redirect sys.stdout to the tee object
         sys.stdout = tee
-        path = testParameters.path + os.path.sep + "test_general_1"
+
         inputParameters = request.json
         try:
             ticks = int(inputParameters['ticks'])
@@ -42,9 +43,11 @@ def submit_test_1():
             opinion_polarization = float(inputParameters['opinion_polarization'])
             network_polarization = inputParameters['network_polarization']
             thresholds = inputParameters['thresholds']
+            email = inputParameters['email']
 
             network_polarization = [float(value) for value in network_polarization.split(",")]
             thresholds = [float(value) for value in thresholds.split(",")]
+
 
             log_messages = [
                 {"status": "in_progress", "value": f"Number of Ticks: {ticks}"},
@@ -88,13 +91,13 @@ def submit_test_1():
                 yield json.dumps(msg) + "\n"
                 time.sleep(1)
 
-            dataframe, img_chart = test_general_1.start_test_1(netlogo, netlogoCommands, testParameters)
+            test_result = test_general_1.start_test_1(netlogo, netlogoCommands, testParameters)
 
             log_message = {"status": "in_progress", "value": ">> Test completed"}
             print(log_message["value"])
             yield json.dumps(log_message) + "\n"
 
-            data_for_chart = utils.setup_data_for_chart(dataframe, "Thresholds")
+            data_for_chart = utils.setup_data_for_chart(test_result["dataframe"], "Thresholds")
 
             time.sleep(1)
 
@@ -104,16 +107,28 @@ def submit_test_1():
 
             netlogo.kill_workspace()
 
+            log_message = {"status": "in_progress", "value": ">> Sending results..."}
+            print(log_message["value"])
+            yield json.dumps(log_message) + "\n"
+
+
+
             # Get the captured output from the string buffer
             output = tee.get_value()
-        finally:
-            # Reimposta sys.stdout al valore originale (terminale)
             sys.stdout = tee.stdout
             tee.close()
 
+            files_to_send = [test_result["dataset_filepath"], test_result["result_chart_filepath"], log_path]
+
+
+            utils.send_results(email, files_to_send)
+
+        finally:
+            sys.stdout = tee.stdout
+
         response_data = {
             "data_for_chart": data_for_chart,
-            "img_chart": img_chart,
+            "img_chart": test_result["img_chart_web"],
             "log_output": output
         }
 
@@ -134,7 +149,8 @@ def submit_test_2():
         path = testParameters.path + "test_general_2/"
         testParameters.set_path(path)
         # Crea un'istanza di Tee per gestire i log su terminale e file simultaneamente
-        tee = Tee(testParameters.path + os.path.sep + 'log.txt')
+        log_path = testParameters.path + 'log.txt'
+        tee = Tee(log_path)
         # Redirect sys.stdout to the tee object
         sys.stdout = tee
         inputParameters = request.json
@@ -145,6 +161,7 @@ def submit_test_2():
             network_polarization = inputParameters['network_polarization']
             threshold = inputParameters['thresholds']
             nb_nodes = inputParameters['nodes']
+            email = inputParameters['email']
 
             network_polarization = [float(value) for value in network_polarization.split(",")]
             nb_nodes = [int(value) for value in nb_nodes.split(",")]
@@ -185,13 +202,13 @@ def submit_test_2():
                 yield json.dumps(msg) + "\n"
                 time.sleep(1)
 
-            dataframe, img_chart = test_general_2.start_test_2(netlogo, netlogoCommands, testParameters)
+            test_result = test_general_2.start_test_2(netlogo, netlogoCommands, testParameters)
 
             log_message = {"status": "in_progress", "value": ">> Test completed"}
             print(log_message["value"])
             yield json.dumps(log_message) + "\n"
 
-            data_for_chart = utils.setup_data_for_chart(dataframe, "Nodes")
+            data_for_chart = utils.setup_data_for_chart(test_result["dataframe"], "Nodes")
 
             time.sleep(1)
             log_message = {"status": "in_progress", "value": ">> Shutting down the system..."}
@@ -200,16 +217,25 @@ def submit_test_2():
 
             netlogo.kill_workspace()
 
+            log_message = {"status": "in_progress", "value": ">> Sending results..."}
+            print(log_message["value"])
+            yield json.dumps(log_message) + "\n"
+
             # Get the captured output from the string buffer
             output = tee.get_value()
-        finally:
-            # Reimposta sys.stdout al valore originale (terminale)
             sys.stdout = tee.stdout
             tee.close()
 
+            files_to_send = [test_result["dataset_filepath"], test_result["result_chart_filepath"], log_path]
+
+            utils.send_results(email, files_to_send)
+
+        finally:
+            sys.stdout = tee.stdout
+
         response_data = {
             "data_for_chart": data_for_chart,
-            "img_chart": img_chart,
+            "img_chart": test_result["img_chart_web"],
             "log_output": output
         }
 
@@ -230,7 +256,8 @@ def submit_test_sa_1():
         path = testParameters.path
         testParameters.set_path(path)
 
-        log_manager = LogManager(path + 'log.txt')
+        log_path = path + 'log.txt'
+        log_manager = LogManager(log_path)
 
         inputParameters = request.json
         ticks = int(inputParameters['ticks'])
@@ -238,6 +265,7 @@ def submit_test_sa_1():
         opinion_polarization = float(inputParameters['opinion_polarization'])
         network_polarization = inputParameters['network_polarization']
         thresholds = inputParameters['thresholds']
+        email = inputParameters['email']
 
         network_polarization = [float(value) for value in network_polarization.split(",")]
         thresholds = [float(value) for value in thresholds.split(",")]
@@ -284,7 +312,7 @@ def submit_test_sa_1():
         testParameters.set_warning_impact_neutral(warning_impact_neutral)
         testParameters.set_sa_delay(sa_delay)
 
-        log_message = {"status": "in_progress", "value": ">> Carico il modello di netlogo..."}
+        log_message = {"status": "in_progress", "value": ">> Loading the NetLogo model..."}
         print(log_message["value"])
         log_manager.insert_line(log_message["value"])
         yield json.dumps(log_message) + "\n"
@@ -292,8 +320,8 @@ def submit_test_sa_1():
         netlogo, netlogoCommands = test_general_sa_1.load_sim_model()
 
         log_messages = [
-            {"status": "in_progress", "value": ">> Modello caricato"},
-            {"status": "in_progress", "value": ">> Avvio il test..."},
+            {"status": "in_progress", "value": ">> Model Loaded"},
+            {"status": "in_progress", "value": ">> Starting the test..."},
         ]
 
         for msg in log_messages:
@@ -302,17 +330,17 @@ def submit_test_sa_1():
             yield json.dumps(msg) + "\n"
             time.sleep(1)
 
-        dataframe, img_chart = test_general_sa_1.start_test_sa_1(netlogo, netlogoCommands, testParameters)
+        test_result = test_general_sa_1.start_test_sa_1(netlogo, netlogoCommands, testParameters)
 
-        log_message = {"status": "in_progress", "value": ">> Test terminato"}
+        log_message = {"status": "in_progress", "value": ">> Test completed"}
         print(log_message["value"])
         log_manager.insert_line(log_message["value"])
         yield json.dumps(log_message) + "\n"
 
-        data_for_chart = utils.setup_data_for_chart(dataframe, "Thresholds")
+        data_for_chart = utils.setup_data_for_chart(test_result["dataframe"], "Thresholds")
 
         time.sleep(1)
-        log_message = {"status": "in_progress", "value": ">> Spengo il sistema..."}
+        log_message = {"status": "in_progress", "value": ">> Shutting down the system..."}
         print(log_message["value"])
         log_manager.insert_line(log_message["value"])
         yield json.dumps(log_message) + "\n"
@@ -322,9 +350,16 @@ def submit_test_sa_1():
         output = log_manager.get_contents()
         log_manager.clear_log()
 
+        with open(log_path, "w") as file:
+            file.write(output)
+
+        files_to_send = [test_result["dataset_filepath"], test_result["result_chart_filepath"], log_path]
+
+        utils.send_results(email, files_to_send)
+
         response_data = {
             "data_for_chart": data_for_chart,
-            "img_chart": img_chart,
+            "img_chart": test_result["img_chart_web"],
             "log_output": output
         }
 

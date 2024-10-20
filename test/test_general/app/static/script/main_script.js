@@ -7,12 +7,14 @@ async function start_test_1() {
     disableButton();
     document.getElementById("loader-bar").style.display = "block";
     document.getElementById("log-box").style.display = "block";
+    document.getElementById("info-box").style.display = "block";
 
     let ticks = document.getElementById("ticks").value;
     let iterations = document.getElementById("iterations").value;
     let opinion_polarization = document.getElementById("opinion_polarization").value;
     let network_polarization = document.getElementById("network_polarization").value;
     let thresholds = document.getElementById("thresholds").value;
+    let email = document.getElementById("email").value;
 
     // Configura i dettagli della richiesta
     let input = {
@@ -20,7 +22,8 @@ async function start_test_1() {
         iterations: iterations,
         opinion_polarization: opinion_polarization,
         network_polarization: network_polarization,
-        thresholds: thresholds
+        thresholds: thresholds,
+        email: email
     }
     console.log(JSON.stringify(input));
 
@@ -85,12 +88,15 @@ async function start_test_2() {
     disableButton();
     document.getElementById("loader-bar").style.display = "block";
     document.getElementById("log-box").style.display = "block";
+    document.getElementById("info-box").style.display = "block";
+
     let ticks = document.getElementById("ticks").value;
     let iterations = document.getElementById("iterations").value;
     let opinion_polarization = document.getElementById("opinion_polarization").value;
     let network_polarization = document.getElementById("network_polarization").value;
     let thresholds = document.getElementById("thresholds").value;
     let nodes = document.getElementById("nodes").value;
+    let email = document.getElementById("email").value;
 
     let input = {
         ticks: ticks,
@@ -98,7 +104,8 @@ async function start_test_2() {
         opinion_polarization: opinion_polarization,
         network_polarization: network_polarization,
         thresholds: thresholds,
-        nodes: nodes
+        nodes: nodes,
+        email: email
     }
 
     console.log(JSON.stringify(input));
@@ -173,6 +180,7 @@ async function start_test_sa_1() {
     let warning_impact = document.getElementById("warning-impact").value;
     let warning_impact_neutral = document.getElementById("warning-impact-neutral").value;
     let sa_delay = document.getElementById("sa-delay").value;
+    let email = document.getElementById("email").value;
 
     let input = {
         ticks: ticks,
@@ -186,7 +194,8 @@ async function start_test_sa_1() {
         choose_method : choose_method,
         warning_impact : warning_impact,
         warning_impact_neutral : warning_impact_neutral,
-        sa_delay : sa_delay
+        sa_delay : sa_delay,
+        email: email
     }
 
     console.log(JSON.stringify(input));

@@ -29,6 +29,23 @@
     margin: 0;
 }
 
+.info-box{
+    background-color: white;
+    border: #C1111F 8px solid;
+    border-radius: 1em;
+    padding: 0.4em 2em;
+    display: none;
+    width: 80%;
+    font-weight: 500;
+    font-size: 1em;
+    text-align: justify;
+    margin-bottom: 0;
+    margin-top: 1em;
+    max-width: fit-content;
+    margin-inline: auto;
+}
+
+
 .form-info p{
     margin: 0;
 }

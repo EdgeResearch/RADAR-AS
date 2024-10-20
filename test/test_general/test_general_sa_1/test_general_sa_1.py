@@ -30,7 +30,7 @@ def load_sim_model():
 
 
 def start_test_sa_1(netlogo, netlogoCommands, testParameters):
-    print(">> Recupero i parametri... ")
+    print(">> Retrieving the parameters... ")
     # Recupera i parametri
     ticks = testParameters.total_ticks
     tresholds = testParameters.thresholds
@@ -49,7 +49,7 @@ def start_test_sa_1(netlogo, netlogoCommands, testParameters):
     warning_impact = testParameters.warning_impact
     warning_impact_neutral = testParameters.warning_impact_neutral
     sa_delay = testParameters.sa_delay
-    print(">> Parametri recuperati ")
+    print(">> Parameters Retrieved")
 
 
     env = FakeNewsSimulation(netlogoCommands)
@@ -115,12 +115,20 @@ def start_test_sa_1(netlogo, netlogoCommands, testParameters):
     filepath = Path(testParameters.path + 'test_general_sa_1.csv')
     filepath.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(filepath, index=False)
-    print(f">> Risultati salvati in {SuperAgentTestGeneralParametes.path}")
+    print(">> Saving the results...")
 
-    print(f">> Creo il grafico...")
-    img_chart = plot_chart(testParameters)
-    print(f">> Grafico creato e salvato in  {SuperAgentTestGeneralParametes.path}")
-    return df, img_chart
+    print(f">> Creating the graph...")
+    img_chart, image_chart_path = plot_chart(testParameters)
+    print(f">> Graph created and saved in   {SuperAgentTestGeneralParametes.path}")
+
+    data_to_return = {
+        "dataframe": df,
+        "img_chart_web" : img_chart,
+        "dataset_filepath": filepath,
+        "result_chart_filepath": image_chart_path
+    }
+
+    return data_to_return
 
 def plot_chart(testParameters):
     colorarray=['black','dimgrey','grey','darkgrey','lightgrey','darkslategrey','lightslategrey','slategrey', 'silver', 'gainsboro', 'dimgrey', 'grey', 'darkgrey']
@@ -174,4 +182,4 @@ def plot_chart(testParameters):
     # Convertire il contenuto del buffer in una stringa base64
     img_base64 = base64.b64encode(buffer.read()).decode('utf-8')
 
-    return img_base64
+    return img_base64, filepath

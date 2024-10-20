@@ -59,6 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
             $("#sa-delay-info-icon").click(function () {
                 $("#sa-delay-info").slideToggle();
             })
+            $("#email-info-icon").click(function () {
+                $("#email-info").slideToggle();
+            })
 
             $('#superagent').change(function () {
                 if ($(this).is(':checked')) {

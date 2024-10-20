@@ -1,15 +1,17 @@
-Numero di Ticks: 100
-Numero di Iterazioni: 100
+Numero di Ticks: 2
+Numero di Iterazioni: 2
 Opinion Polarization: 0.0
-Network Polarization: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
-Thresholds Polarization: [0.27, 0.342, 0.414]
+Network Polarization: [0.2, 0.5]
+Thresholds Polarization: [0.15, 0.298]
 warning: True
 node_range_static_b: 0.05
 node_range: 0.1
-choose_method: random
+choose_method: degree
 warning_impact: 0.1
 warning_impact_neutral: 0.3
 sa_delay: 2
->> Carico il modello di netlogo...
->> Modello caricato
->> Avvio il test...
+>> Loading the NetLogo model...
+>> Model Loaded
+>> Starting the test...
+>> Test completed
+>> Shutting down the system...

@@ -15,6 +15,7 @@ scipy = "*"
 flask = "*"
 eel = "*"
 bottle = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

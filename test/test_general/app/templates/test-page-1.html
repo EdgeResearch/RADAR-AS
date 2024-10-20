@@ -246,6 +246,19 @@
                 </div>
             </div>
         </div>
+        <hr style="border: none; height: 0.2em; background-color: #C1111F; border-radius: 5px;">
+        <div class="row form-row">
+            <div class="col-12">
+                <label for="email" class="label-field"> E-mail</label>
+                <span class="info-field" id="email-info-icon">info<i
+                        class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                <input type="email" class="form-control" id="email" name="email"
+                       placeholder="email">
+                <div id="email-info" class="form-info">
+                    <p>Indicate the e-mail address to which you would like to receive the simulation results. Make sure it is accurate to ensure proper delivery.</p>
+                </div>
+            </div>
+        </div>
     </form>
     <div class="row mt-4">
         <div class="col-xs-12 col-md-6">
@@ -259,6 +272,27 @@
             </button>
         </div>
         <div class="col-12 mt-5">
+                        <div class="info-box" id="info-box">
+                <div class="row">
+                    <div class="col-12">
+                        <h1 style="color: #003049; margin: 0; text-align: center;">
+                            <i class="fa-solid fa-circle-info" style="vertical-align: middle;"></i>
+                            <span style="font-size: 0.7em; vertical-align: middle;font-weight: bold">Reminder:</span>
+                        </h1>
+
+                    </div>
+                    <div class="col-12">
+                        <ul>
+                            <li>
+                                After starting the simulation, if no more logs appear, <b>do not close the platform</b>. The simulation is running correctly. <i class="fa-solid fa-hourglass-half" style="color: #C1111F"></i>
+                            </li>
+                            <li>
+                                For longer simulations, <b>your browser session may expire</b>. Don't worry, <b>the results will be automatically sent to the email address</b> you provided. <i class="fa-solid fa-envelope" style="color: #C1111F"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <div class="loader" id="loader-bar">
                 <div class="loaderBar"></div>
             </div>

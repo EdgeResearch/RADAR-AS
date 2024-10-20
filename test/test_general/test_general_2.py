@@ -17,11 +17,9 @@ def load_sim_model():
     modelfile = os.path.abspath('../../netlogo/FakeNewsSimulation.nlogo')
     netlogo = pynetlogo.NetLogoLink(gui=False)
 
-    print(">> Carico il modello NetLogo...")
 
     netlogo.load_model(modelfile)
 
-    print(">> MODELLO CARICATO ")
 
     netlogoCommands = NetlogoCommands(netlogo, modelfile)
 
@@ -29,7 +27,7 @@ def load_sim_model():
 
 
 def start_test_2(netlogo, netlogoCommands, testParameters):
-    print(">> Recupero i parametri... ")
+    print(">> Retrieving the parameters... ")
     # Recupera i parametri
     ticks = testParameters.total_ticks
     tresholds = testParameters.thresholds
@@ -39,12 +37,12 @@ def start_test_2(netlogo, netlogoCommands, testParameters):
     opinion_metric_value = testParameters.opinion_metric_value
     opinion_polarization = testParameters.opinion_polarization
     number_of_iterations = testParameters.number_of_iterations
-    print(f"NUMERO DI ITERAZIONI: {number_of_iterations}")
+    print(f"Number of Iterations: {number_of_iterations}")
 
     netlogoCommands.set_opinion_polarization(opinion_polarization)
     netlogoCommands.set_treshold(tresholds)
 
-    print(">> PARAMETRI RECUPERATI ")
+    print(">> Parameters Retrieved")
 
     global_cascades = []
     global_cascades_means = []
@@ -68,16 +66,23 @@ def start_test_2(netlogo, netlogoCommands, testParameters):
                                    'Virality': [calculate_fraction(global_cascades)]})
             df = pd.concat([df, new_df], ignore_index=True)
 
-    print(">> TEST TERMINATO")
-    print(">> Salvo i risultati...")
+    print(">> Saving the results...")
     filepath = Path(testParameters.path + 'test_general_2.csv')
     filepath.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(filepath, index=False)
-    print(f">> Risultati salvati in {TestGeneralParametes.path}")
-    print(f">> Creo il grafico...")
-    img_chart = plot_chart(testParameters)
-    print(f">> Grafico creato e salvato in  {TestGeneralParametes.path}")
-    return df, img_chart
+    print(f">> Result saved in {TestGeneralParametes.path}")
+
+    print(f">> Creating the graph...")
+    img_chart, image_chart_path = plot_chart(testParameters)
+    print(f">> Graph created and saved in  {TestGeneralParametes.path}")
+
+    data_to_return = {
+        "dataframe": df,
+        "img_chart_web" : img_chart,
+        "dataset_filepath": filepath,
+        "result_chart_filepath": image_chart_path
+    }
+    return data_to_return
 
 def plot_chart(testParameters):
     colorarray=['black','dimgrey','grey','darkgrey','lightgrey','darkslategrey','lightslategrey','slategrey', 'silver', 'gainsboro']
@@ -133,4 +138,4 @@ def plot_chart(testParameters):
     # Convertire il contenuto del buffer in una stringa base64
     img_base64 = base64.b64encode(buffer.read()).decode('utf-8')
 
-    return img_base64
+    return img_base64, filepath
