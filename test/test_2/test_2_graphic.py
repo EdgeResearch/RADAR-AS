@@ -4,14 +4,14 @@ import pandas as pd
 
 
 if __name__ == "__main__":
-    colorarray=['black','dimgrey','grey','darkgrey','lightgrey','darkslategrey','lightslategrey','slategrey', 'silver', 'gainsboro']
+    colorarray=['black', 'green', 'red', 'yellow', 'blue', 'orange', 'gray']
 
-    nodes = [100,200,300,400,500]
-    nodes = [75, 100, 125, 150, 175, 200, 225]
+    nodes = [100, 200, 300, 400, 500]
+    #nodes = [75, 100, 125, 150, 175, 200, 225]
 
     markers = ['o-', 's--', 'D:', "^-", "v--", "o--", "s-", "D--", "^:", "v-", "o--", "s:"]
 
-    path = "test/test_2/test_2_4_results/"
+    path = "test/test_2/test_2_3_results/"
     df1 = pd.read_csv(path + 'test_2_1.csv')
     df2 = pd.read_csv(path + 'test_2_2.csv')
     df3 = pd.read_csv(path + 'test_2_3.csv')
@@ -62,6 +62,6 @@ if __name__ == "__main__":
 
 
 
-    filepath = Path(path + 'test_2_t270_75_225.pdf')
+    filepath = Path(path + 'test_2_t414_nodes.pdf')
     filepath.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(filepath, bbox_inches='tight')

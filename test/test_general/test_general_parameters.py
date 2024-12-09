@@ -12,10 +12,15 @@ class TestGeneralParametes:
     opinion_metric_steps = [0.01, 0.04, 0.08, 0.10, 0.12, 0.16, 0.20, 0.33, 0.66]
     nb_nodes = 100
     total_ticks = 100
+    arousal_threshold = 0.5 #soglia Engangement
+    arousal = 0 #Engangement [0,1]
+    valence = 0 #Sentiment [-1,1]
+    h_ec = 0  #Global Emotion EC
+    h_network = 0 #Global Emotion Network
 
 
-    def set_network_polarization(self, network_olarization):
-        self.network_polarization = network_olarization
+    def set_network_polarization(self, network_polarization):
+        self.network_polarization = network_polarization
 
     def set_opinion_polarization(self, opinion_polarization):
         self.opinion_polarization = opinion_polarization
@@ -43,6 +48,21 @@ class TestGeneralParametes:
 
     def set_total_ticks(self, total_ticks):
         self.total_ticks = total_ticks
+
+    def set_arousal_threshold(self, arousal_threshold):
+        self.arousal_threshold = arousal_threshold
+
+    def set_arousal(self, arousal):
+        self.arousal = arousal
+
+    def set_valence(self, valence):
+        self.valence = valence
+
+    def set_h_ec(self, h_ec):
+        self.h_ec = h_ec
+
+    def set_h_network(self, h_network):
+        self.h_network = h_network
 
     
 class NetlogoCommands:

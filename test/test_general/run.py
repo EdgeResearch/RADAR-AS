@@ -1,5 +1,4 @@
 import time
-
 from bottle import Bottle, run, request, static_file, template, response
 import sys
 import os
@@ -62,6 +61,7 @@ def submit_test_1():
             testParameters.set_opinion_polarization(opinion_polarization)
             testParameters.set_network_polarization(network_polarization)
             testParameters.set_thresholds(thresholds)
+
 
             parameters = {
                 "ticks": ticks,
