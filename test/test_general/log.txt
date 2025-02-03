@@ -1,0 +1,35 @@
+Loading .env environment variables...
+2024-10-23 22:23:14.908730: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2024-10-23 22:23:14.923602: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2024-10-23 22:23:14.941153: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2024-10-23 22:23:14.946319: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2024-10-23 22:23:14.958452: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-10-23 22:23:15.710896: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Bottle v0.13.2 server starting up (using WSGIRefServer())...
+Listening on http://0.0.0.0:11111/
+Hit Ctrl-C to quit.
+
+151.36.202.174 - - [23/Oct/2024 22:24:11] "GET / HTTP/1.1" 200 2451
+151.36.202.174 - - [23/Oct/2024 22:25:13] "GET / HTTP/1.1" 200 2451
+127.0.0.1 - - [23/Oct/2024 22:25:13] "GET /test1_page HTTP/1.1" 200 19644
+127.0.0.1 - - [23/Oct/2024 22:25:13] "GET /static/styles/result-style.css HTTP/1.1" 200 898
+127.0.0.1 - - [23/Oct/2024 22:25:13] "GET /static/script/result-page-script.js HTTP/1.1" 200 6068
+127.0.0.1 - - [23/Oct/2024 22:25:13] "GET /static/script/form_script.js HTTP/1.1" 200 6855
+127.0.0.1 - - [23/Oct/2024 22:25:13] "GET /static/styles/main-style.css HTTP/1.1" 304 0
+127.0.0.1 - - [23/Oct/2024 22:25:13] "GET /static/styles/loading-style.css HTTP/1.1" 304 0
+127.0.0.1 - - [23/Oct/2024 22:25:13] "GET /static/styles/form-style.css HTTP/1.1" 304 0
+127.0.0.1 - - [23/Oct/2024 22:25:13] "GET /static/script/main_script.js HTTP/1.1" 304 0
+151.36.202.174 - - [23/Oct/2024 22:25:13] "GET /static/styles/homepage-style.css HTTP/1.1" 304 0
+151.36.202.174 - - [23/Oct/2024 22:25:13] "GET /static/styles/main-style.css HTTP/1.1" 304 0
+151.36.202.174 - - [23/Oct/2024 22:25:13] "GET /static/styles/form-style.css HTTP/1.1" 304 0
+151.36.202.174 - - [23/Oct/2024 22:25:13] "GET /static/assets/fake-news.png HTTP/1.1" 304 0
+151.36.202.174 - - [23/Oct/2024 22:25:13] "GET /static/script/main_script.js HTTP/1.1" 304 0
+151.36.202.174 - - [23/Oct/2024 22:25:13] "GET /static/styles/loading-style.css HTTP/1.1" 200 866
+127.0.0.1 - - [23/Oct/2024 22:25:20] "GET /static/assets/dialog.png HTTP/1.1" 200 9091
+151.82.171.232 - - [24/Oct/2024 10:20:11] code 400, message Bad request syntax ('\\x16\\x03\\x01\\x02\\x00\\x01\\x00\\x01ü\\x03\\x03ëþOn»w\\x02x8É\\x8aÕ')
+151.82.171.232 - - [24/Oct/2024 10:20:11] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03ëþOn»w\x02x8É\x8aÕ" 400 -
+151.82.171.232 - - [24/Oct/2024 10:20:12] code 400, message Bad request version ('C{8¶§\\x032]ÍMð\\x00,ÚÚ\\x13\\x01\\x13\\x02\\x13\\x03À,À+Ì©À0À/Ì¨À')
+151.82.171.232 - - [24/Oct/2024 10:20:12] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03\x1e²^èñ©\x81BY\x0fæ\x0fF+\x96\x88*ZD 9,I\x89Ä\x0e\x95Õá\x98§\x8b \x9dÙ×\x8c\x88pÚB ù¦ñÑ\x07¹5e~pr C{8¶§\x032]ÍMð\x00,ÚÚ\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À" 400 -
+151.82.171.232 - - [24/Oct/2024 10:20:12] code 400, message Bad request syntax ('\\x16\\x03\\x01\\x00}\\x01\\x00\\x00y\\x03\\x01ª\\x83T#(\\x83\\x84p:\\x0e[õU\\x88\\xadÙ\\x81\\x1a¯2\\x8b1LvI\\x166?\\x9d>¸}\\x00\\x00\\x14À')
+151.82.171.232 - - [24/Oct/2024 10:20:12] "\x16\x03\x01\x00}\x01\x00\x00y\x03\x01ª\x83T#(\x83\x84p:\x0e[õU\x88­Ù\x81\x1a¯2\x8b1LvI\x166?\x9d>¸}\x00\x00\x14À" 400 -

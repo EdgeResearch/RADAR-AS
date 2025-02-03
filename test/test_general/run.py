@@ -403,4 +403,5 @@ def server_static(filepath):
 
 
 if __name__ == "__main__":
-    run(app, host='localhost', port=7777, debug=True)
+    run(app, host='0.0.0.0', port=11111, debug=True)
+
