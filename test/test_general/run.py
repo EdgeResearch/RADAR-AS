@@ -43,6 +43,7 @@ def submit_test_1():
             opinion_polarization = float(inputParameters['opinion_polarization'])
             network_polarization = inputParameters['network_polarization']
             thresholds = inputParameters['thresholds']
+            nbnodes  = inputParameters['nbnodes']
             email = inputParameters['email']
 
             network_polarization = [float(value) for value in network_polarization.split(",")]
@@ -54,7 +55,8 @@ def submit_test_1():
                 {"status": "in_progress", "value": f"Number of Iterazioni: {iterations}"},
                 {"status": "in_progress", "value": f"Opinion Polarization: {opinion_polarization}"},
                 {"status": "in_progress", "value": f"Network Polarization: {network_polarization}"},
-                {"status": "in_progress", "value": f"Thresholds: {thresholds}"}
+                {"status": "in_progress", "value": f"Thresholds: {thresholds}"},
+                {"status": "in_progress", "value": f"Number of Nodes: {nbnodes}"}
             ]
 
             for msg in log_messages:
@@ -67,13 +69,16 @@ def submit_test_1():
             testParameters.set_opinion_polarization(opinion_polarization)
             testParameters.set_network_polarization(network_polarization)
             testParameters.set_thresholds(thresholds)
+            testParameters.set_nb_nodes(nbnodes)
+
 
             parameters = {
                 "ticks": ticks,
                 "iterations": iterations,
                 "opinion_polarization": opinion_polarization,
                 "network_polarization": network_polarization,
-                "thresholds": thresholds
+                "thresholds": thresholds,
+                "nbnodes": nbnodes
             }
 
             log_message = {"status": "in_progress", "value": ">> Loading the NetLogo model..."}
@@ -265,6 +270,7 @@ def submit_test_sa_1():
         opinion_polarization = float(inputParameters['opinion_polarization'])
         network_polarization = inputParameters['network_polarization']
         thresholds = inputParameters['thresholds']
+        nbnodes = inputParameters['nbnodes']
         email = inputParameters['email']
 
         network_polarization = [float(value) for value in network_polarization.split(",")]
@@ -284,6 +290,7 @@ def submit_test_sa_1():
             {"status": "in_progress", "value": f"Opinion Polarization: {opinion_polarization}"},
             {"status": "in_progress", "value": f"Network Polarization: {network_polarization}"},
             {"status": "in_progress", "value": f"Thresholds Polarization: {thresholds}"},
+            {"status": "in_progress", "value": f"Number of Nodes: {nbnodes}"},
             {"status": "in_progress", "value": f"warning: {warning}"},
             {"status": "in_progress", "value": f"node_range_static_b: {node_range_static_b}"},
             {"status": "in_progress", "value": f"node_range: {node_range}"},
@@ -304,6 +311,7 @@ def submit_test_sa_1():
         testParameters.set_opinion_polarization(opinion_polarization)
         testParameters.set_network_polarization(network_polarization)
         testParameters.set_thresholds(thresholds)
+        testParameters.set_nb_nodes(nbnodes)
         testParameters.set_warning(warning)
         testParameters.set_node_range_static_b(node_range_static_b)
         testParameters.set_node_range(node_range)
@@ -403,5 +411,6 @@ def server_static(filepath):
 
 
 if __name__ == "__main__":
+    #run(app, host='localhost', port=7777, debug=True)
     run(app, host='0.0.0.0', port=11111, debug=True)
 

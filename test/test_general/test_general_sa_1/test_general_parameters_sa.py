@@ -94,6 +94,8 @@ class NetlogoCommands:
     def get_total_agents(self):
         return self.netlogo.report("get-total-agents")
 
+    def get_nb_nodes(self):
+        return self.netlogo.report("get-nb-nodes")
     def get_global_cascade_fraction(self):
 
         active_a_agents = self.get_a_active_agents()

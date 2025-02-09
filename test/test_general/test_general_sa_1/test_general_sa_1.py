@@ -20,7 +20,8 @@ modelfile = os.path.abspath('test_general_sa_1/netlogo/FakeNewsSimulation.nlogo'
 
 
 def load_sim_model():
-    netlogo = pynetlogo.NetLogoLink()
+    netlogo = pynetlogo.NetLogoLink(netlogo_home='/home/edgelab/Desktop/NetLogo-6.4')
+    #netlogo = pynetlogo.NetLogoLink()
 
     netlogo.load_model(modelfile)
 
@@ -41,6 +42,7 @@ def start_test_sa_1(netlogo, netlogoCommands, testParameters):
     total_ticks = netlogoCommands.get_total_ticks()
     opinion_polarization = testParameters.opinion_polarization
     number_of_iterations = testParameters.number_of_iterations
+    nbnodes = testParameters.nb_nodes
 
     warning = testParameters.warning
     node_range_static_b = testParameters.node_range_static_b
@@ -59,13 +61,14 @@ def start_test_sa_1(netlogo, netlogoCommands, testParameters):
     netlogoCommands.set_initial_opinion_metric_value(0.5)
     netlogoCommands.set_echo_chamber_fraction(testParameters.echo_chamber_fraction)
     netlogoCommands.set_opinion_metric_step(opinion_metric_step)
-    netlogoCommands.set_nodes(testParameters.nb_nodes)
+    netlogoCommands.set_nodes(nbnodes)
     env.set_most_influent_a_nodes_criteria(10, choose_method)
     netlogoCommands.set_warning(warning)
     netlogoCommands.set_node_range_static_b(node_range_static_b)
     netlogoCommands.set_node_range(node_range)
     netlogoCommands.set_warning_impact(warning_impact)
     netlogoCommands.set_warning_impact_neutral(warning_impact_neutral)
+
 
     total_nodes = netlogoCommands.get_total_agents()
     total_ticks = netlogoCommands.get_total_ticks()
@@ -80,6 +83,7 @@ def start_test_sa_1(netlogo, netlogoCommands, testParameters):
     df = pd.DataFrame({"Thresholds": [], "Network Polarization": [], 'Virality': []})
     start_time = time.time()
 
+    print(f"Number of Nodes: {netlogoCommands.get_nb_nodes()}")
     for i in range(len(network_polarization)):
         netlogoCommands.set_network_polarization(network_polarization[i])
         print("P_N is set to: {}".format(netlogo.report("P_N")))

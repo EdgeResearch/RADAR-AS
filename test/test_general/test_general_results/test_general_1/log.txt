@@ -1,16 +1,176 @@
-Number of Ticks: 1
-Number of Iterazioni: 1
-Opinion Polarization: 0.1
-Network Polarization: [0.1]
-Thresholds: [0.1]
+Number of Ticks: 10
+Number of Iterazioni: 10
+Opinion Polarization: 0.0
+Network Polarization: [0.2, 0.4, 0.6, 0.8, 1.0]
+Thresholds: [0.27]
+Number of Nodes: 300
 >> Loading the NetLogo model...
 >> Model Loaded
 >> Starting the test...
 >> Retrieving the parameters... 
-Number of Iterations: 1
+Number of Iterations: 10
+Number of Nodes: 300.0
 >> Parameters Retrieved
-P_N is set to: 0.1
-teta is set to: 0.1
+P_N is set to: 0.2
+teta is set to: 0.27
+A_Active_Agents: 13.0
+B_Active_Agents: 6.0
+Neutral_Active_Agents: 281.0
+A_Active_Agents: 25.0
+B_Active_Agents: 14.0
+Neutral_Active_Agents: 261.0
+A_Active_Agents: 17.0
+B_Active_Agents: 16.0
+Neutral_Active_Agents: 267.0
+A_Active_Agents: 18.0
+B_Active_Agents: 15.0
+Neutral_Active_Agents: 267.0
+A_Active_Agents: 24.0
+B_Active_Agents: 13.0
+Neutral_Active_Agents: 263.0
+A_Active_Agents: 13.0
+B_Active_Agents: 11.0
+Neutral_Active_Agents: 276.0
+A_Active_Agents: 20.0
+B_Active_Agents: 16.0
+Neutral_Active_Agents: 264.0
+A_Active_Agents: 16.0
+B_Active_Agents: 6.0
+Neutral_Active_Agents: 278.0
+A_Active_Agents: 25.0
+B_Active_Agents: 17.0
+Neutral_Active_Agents: 258.0
+A_Active_Agents: 22.0
+B_Active_Agents: 13.0
+Neutral_Active_Agents: 265.0
+P_N is set to: 0.4
+teta is set to: 0.27
+A_Active_Agents: 15.0
+B_Active_Agents: 8.0
+Neutral_Active_Agents: 277.0
+A_Active_Agents: 25.0
+B_Active_Agents: 13.0
+Neutral_Active_Agents: 262.0
+A_Active_Agents: 17.0
+B_Active_Agents: 19.0
+Neutral_Active_Agents: 264.0
+A_Active_Agents: 20.0
+B_Active_Agents: 10.0
+Neutral_Active_Agents: 270.0
+A_Active_Agents: 23.0
+B_Active_Agents: 12.0
+Neutral_Active_Agents: 265.0
+A_Active_Agents: 18.0
+B_Active_Agents: 7.0
+Neutral_Active_Agents: 275.0
+A_Active_Agents: 24.0
+B_Active_Agents: 16.0
+Neutral_Active_Agents: 260.0
+A_Active_Agents: 17.0
+B_Active_Agents: 13.0
+Neutral_Active_Agents: 270.0
+A_Active_Agents: 14.0
+B_Active_Agents: 14.0
+Neutral_Active_Agents: 272.0
+A_Active_Agents: 18.0
+B_Active_Agents: 13.0
+Neutral_Active_Agents: 269.0
+P_N is set to: 0.6
+teta is set to: 0.27
+A_Active_Agents: 12.0
+B_Active_Agents: 13.0
+Neutral_Active_Agents: 275.0
+A_Active_Agents: 26.0
+B_Active_Agents: 15.0
+Neutral_Active_Agents: 259.0
+A_Active_Agents: 32.0
+B_Active_Agents: 11.0
+Neutral_Active_Agents: 257.0
+A_Active_Agents: 19.0
+B_Active_Agents: 25.0
+Neutral_Active_Agents: 256.0
+A_Active_Agents: 20.0
+B_Active_Agents: 11.0
+Neutral_Active_Agents: 269.0
+A_Active_Agents: 19.0
+B_Active_Agents: 31.0
+Neutral_Active_Agents: 250.0
+A_Active_Agents: 20.0
+B_Active_Agents: 14.0
+Neutral_Active_Agents: 266.0
+A_Active_Agents: 18.0
+B_Active_Agents: 15.0
+Neutral_Active_Agents: 267.0
+A_Active_Agents: 19.0
+B_Active_Agents: 11.0
+Neutral_Active_Agents: 270.0
+A_Active_Agents: 16.0
+B_Active_Agents: 12.0
+Neutral_Active_Agents: 272.0
+P_N is set to: 0.8
+teta is set to: 0.27
+A_Active_Agents: 94.0
+B_Active_Agents: 10.0
+Neutral_Active_Agents: 196.0
+A_Active_Agents: 42.0
+B_Active_Agents: 9.0
+Neutral_Active_Agents: 249.0
+A_Active_Agents: 83.0
+B_Active_Agents: 6.0
+Neutral_Active_Agents: 211.0
+A_Active_Agents: 20.0
+B_Active_Agents: 12.0
+Neutral_Active_Agents: 268.0
+A_Active_Agents: 32.0
+B_Active_Agents: 12.0
+Neutral_Active_Agents: 256.0
+A_Active_Agents: 26.0
+B_Active_Agents: 20.0
+Neutral_Active_Agents: 254.0
+A_Active_Agents: 29.0
+B_Active_Agents: 9.0
+Neutral_Active_Agents: 262.0
+A_Active_Agents: 50.0
+B_Active_Agents: 11.0
+Neutral_Active_Agents: 239.0
+A_Active_Agents: 25.0
+B_Active_Agents: 16.0
+Neutral_Active_Agents: 259.0
+A_Active_Agents: 12.0
+B_Active_Agents: 16.0
+Neutral_Active_Agents: 272.0
+P_N is set to: 1.0
+teta is set to: 0.27
+A_Active_Agents: 84.0
+B_Active_Agents: 8.0
+Neutral_Active_Agents: 208.0
+A_Active_Agents: 90.0
+B_Active_Agents: 15.0
+Neutral_Active_Agents: 195.0
+A_Active_Agents: 91.0
+B_Active_Agents: 18.0
+Neutral_Active_Agents: 191.0
+A_Active_Agents: 91.0
+B_Active_Agents: 11.0
+Neutral_Active_Agents: 198.0
+A_Active_Agents: 75.0
+B_Active_Agents: 11.0
+Neutral_Active_Agents: 214.0
+A_Active_Agents: 25.0
+B_Active_Agents: 10.0
+Neutral_Active_Agents: 265.0
+A_Active_Agents: 46.0
+B_Active_Agents: 19.0
+Neutral_Active_Agents: 235.0
+A_Active_Agents: 64.0
+B_Active_Agents: 19.0
+Neutral_Active_Agents: 217.0
+A_Active_Agents: 23.0
+B_Active_Agents: 19.0
+Neutral_Active_Agents: 258.0
+A_Active_Agents: 20.0
+B_Active_Agents: 8.0
+Neutral_Active_Agents: 272.0
 >> Saving the results...
 >> Result saved in test_general_results/
 >> Creating the graph...
@@ -18,6 +178,10 @@ teta is set to: 0.1
 >> Test completed
 >> Stampo il dataframe:
    Thresholds  Network Polarization  Virality
-0         0.1                   0.1       0.0
+0        0.27                   0.2       0.0
+1        0.27                   0.4       0.0
+2        0.27                   0.6       0.0
+3        0.27                   0.8       0.0
+4        0.27                   1.0       0.0
 >> Shutting down the system...
 >> Sending results...

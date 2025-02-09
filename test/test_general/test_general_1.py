@@ -33,13 +33,17 @@ def start_test_1(netlogo, netlogoCommands, testParameters):
     total_ticks = netlogoCommands.get_total_ticks()
     opinion_polarization = testParameters.opinion_polarization
     number_of_iterations = testParameters.number_of_iterations
+    nbnodes = testParameters.nb_nodes
     print(f"Number of Iterations: {number_of_iterations}")
+
+
     netlogoCommands.set_opinion_polarization(opinion_polarization)
+    netlogoCommands.set_nodes(nbnodes)
     netlogoCommands.set_initial_opinion_metric_value(opinion_metric_value)
     netlogoCommands.set_echo_chamber_fraction(TestGeneralParametes.echo_chamber_fraction)
-    netlogoCommands.set_nodes(TestGeneralParametes.nb_nodes)
     netlogoCommands.set_total_ticks(TestGeneralParametes.total_ticks)
 
+    print(f"Number of Nodes: {netlogoCommands.get_nb_nodes()}")
     print(">> Parameters Retrieved")
 
     global_cascades = []
@@ -57,6 +61,7 @@ def start_test_1(netlogo, netlogoCommands, testParameters):
                 netlogoCommands.setup()
                 for l in range(ticks):
                     netlogoCommands.go()
+
                 global_cascades.append(netlogoCommands.get_global_cascade_fraction())
 
             new_df = pd.DataFrame({"Thresholds": [tresholds[j]], "Network Polarization": [network_polarization[i]],

@@ -62,7 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
             $("#email-info-icon").click(function () {
                 $("#email-info").slideToggle();
             })
-
+            $("#nbnodes-info-icon").click(function () {
+                $("#nbnodes-info").slideToggle();
+            })
             $('#superagent').change(function () {
                 if ($(this).is(':checked')) {
                     $('#superagent-parameters-container').slideDown()

@@ -14,6 +14,7 @@ async function start_test_1() {
     let opinion_polarization = document.getElementById("opinion_polarization").value;
     let network_polarization = document.getElementById("network_polarization").value;
     let thresholds = document.getElementById("thresholds").value;
+    let nbnodes = document.getElementById("nbnodes").value;
     let email = document.getElementById("email").value;
 
     // Configura i dettagli della richiesta
@@ -23,6 +24,7 @@ async function start_test_1() {
         opinion_polarization: opinion_polarization,
         network_polarization: network_polarization,
         thresholds: thresholds,
+        nbnodes: nbnodes,
         email: email
     }
     console.log(JSON.stringify(input));
@@ -173,6 +175,7 @@ async function start_test_sa_1() {
     let opinion_polarization = document.getElementById("opinion_polarization").value;
     let network_polarization = document.getElementById("network_polarization").value;
     let thresholds = document.getElementById("thresholds").value;
+    let nbnodes = document.getElementById("nbnodes").value;
     let warning = document.getElementById("warning").checked;
     let node_range_static_b = document.getElementById("node-range-static-b").value;
     let node_range = document.getElementById("node-range").value;
@@ -188,6 +191,7 @@ async function start_test_sa_1() {
         opinion_polarization: opinion_polarization,
         network_polarization: network_polarization,
         thresholds: thresholds,
+        nbnodes: nbnodes,
         warning : warning,
         node_range_static_b : node_range_static_b,
         node_range : node_range,

@@ -63,6 +63,9 @@ class NetlogoCommands:
     def get_total_agents(self):
         return self.netlogo.report("get-total-agents")
 
+    def get_nb_nodes(self):
+        return self.netlogo.report("get-nb-nodes")
+
     def get_global_cascade_fraction(self):
         active_a_agents = self.get_a_active_agents()
         total_agents = self.get_total_agents()
@@ -91,6 +94,7 @@ class NetlogoCommands:
 
     def set_opinion_metric_step(self, value):
         self.netlogo.command("set opinion-metric-step {}".format(value))
+
 
     def set_echo_chamber_fraction(self, value):
         self.netlogo.command("set echo-chamber-fraction {}".format(value))

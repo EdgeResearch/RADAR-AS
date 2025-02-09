@@ -102,13 +102,29 @@
                         class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
                 <input type="text" class="form-control" id="thresholds" name="thresholds"
                        pattern="^(\d+(\.\d+)?)(,\s*\d+(\.\d+)?)*$"
-                       placeholder="Example: 0.150, 0.174, 0.198">
+                       placeholder="Example: 0.270, 0.342, 0.414">
                 <div id="thresholds-info" class="form-info">
                     <p>Determines the activation threshold of the node.</p>
                     <ul>
                         <li><b>Domain:</b> &Ropf;[0,1]</li>
                         <li><b>Multiple values, separated by a comma </b>, can be entered in the following format: [0.1,0.2, etc.]</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-12">
+                <label for="thresholds">Number of Nodes</label>
+                <span class="info-field" id="nbnodes-info-icon">info<i
+                        class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                <input type="text" class="form-control" id="nbnodes" name="nbnodes"
+                       placeholder="Example: 100" value="100">
+                <div id="nbnodes-info" class="form-info">
+                        <p>Number of nodes (basic agents) in the Network.</p>
+                        <ul>
+                            <li><b>Domain: n > 0</b></li>
+                            <li>Default Value: 100</li>
+                        </ul>
                 </div>
             </div>
         </div>

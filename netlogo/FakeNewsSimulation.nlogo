@@ -111,6 +111,11 @@ to-report get-total-agents
   report count basic-agents
 end
 
+;; Function used to get the total number of nodes
+to-report get-nb-nodes
+  report nb-nodes
+end
+
 ;; Function used to get the current tick in the simulation
 to-report get-current-tick
   report ticks
@@ -1088,7 +1093,7 @@ nb-nodes
 nb-nodes
 10
 10000
-100.0
+137.0
 1
 1
 NIL
