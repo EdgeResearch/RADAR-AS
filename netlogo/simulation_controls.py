@@ -20,6 +20,15 @@ class NetlogoCommands:
     def get_total_agents(self):
         return self.netlogo.report("get-total-agents")
 
+    def get_positive_emotions(self):
+        return self.netlogo.report("get-positive-emotions")
+
+    def get_negative_emotions(self):
+        return self.netlogo.report("get-negative-emotions")
+
+    def get_neutral_emotions(self):
+        return self.netlogo.report("get-neutral-emotions")
+
     def get_global_cascade_fraction(self):
 
         active_a_agents = self.get_a_active_agents()

@@ -16,6 +16,28 @@ globals [
   global-cascade             ;; This variable is true when the fraction of active-a nodes is greater of 50%, false otherwise
   is-warning-active          ;; Variable used by the super agent to initialize a warning
   is-reiterate-active        ;; Variable used by the super agent to initialize a reiterate
+
+  ;; Emotions Parameters
+  BASE_V                     ;; Valence baseline ... b
+  BASE_A                     ;; Arousal baseline ... d
+  THRESH_A                   ;; Arousal threshold ... tau
+  DECAY_V                    ;; Valence decay ... gamma_v
+  DECAY_A                    ;; Arousal decay ... gamma_a
+  AMP_V                      ;; Valence amplitude of stochastic shocks ... A_v
+  AMP_A                      ;; Arousal amplitude of stochastic shocks ... A_a
+  FACTOR_V                   ;; Valence down-regulation factor ... k_v
+  FACTOR_A                   ;; Arousal down-regulation factor ... k_a
+  COEFF_B0                   ;; Valence coefficient ... b_0
+  COEFF_B1                   ;; Valence coefficient ... b_1
+  COEFF_B2                   ;; Valence coefficient ... b_2
+  COEFF_B3                   ;; Valence coefficient ... b_3
+  COEFF_D0                   ;; Arousal coefficient ... d_0
+  COEFF_D1                   ;; Arousal coefficient ... d_1
+  COEFF_D2                   ;; Arousal coefficient ... d_2
+  COEFF_D3                   ;; Arousal coefficient ... d_3
+  CHARGE_H                   ;; Initial charge of the Neighbors Communication field ... h
+  DECAY_H                    ;; Neighbors Communication Field decay ... gamma_h
+  IMPACT_H                   ;; Impact of agent expressions on the Neighbors Communication field ... s (max 0.1)
 ]
 
 basic-agents-own [
@@ -41,6 +63,18 @@ basic-agents-own [
   reiterate-counter          ;; Counter needed to determine whether or not the agent will reiterate his opinion
   opinion-metric             ;; Variable used to know when an agent is about to change opinion. The values are included between 0.00 and 1.00
   is-opinion-b-static        ;; Boolean that when set to true an agent will always sustain opinion b
+
+  ;; Agent Emotion Values
+  base-valence               ;; Valence baseline
+  base-arousal               ;; Arousal baseline
+  valence                    ;; Emotional state positive/negative [-1, 1]
+  arousal                    ;; Emotional intensity [-1, 1]
+  threshold                  ;; Arousal threshold for expressing emotions
+  emotion                    ;; Current expressed emotion: -1, 0, 1
+
+  ;; Neighbours Communication Emotions Fields
+  field-absolute             ;; Absolute value of the charge of the field
+  field-sign                 ;; Sign of the charge of the field
 ]
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -52,6 +86,7 @@ to setup
   set-default-shape turtles "circle"
   reset-ticks
   setup-patches
+  global-emotions-initialization
   setup-turtles
   if layout? [layout]
 end
@@ -183,6 +218,26 @@ to-report get-most-influent-a-nodes-by-degree-in-cluster [node-span]
 		report x / 10
 end
 
+to-report get-positive-emotions
+  report count basic-agents with [emotion = 1]
+end
+
+to-report get-negative-emotions
+  report count basic-agents with [emotion = -1]
+end
+
+to-report get-neutral-emotions
+  report count basic-agents with [emotion = 0]
+end
+
+to-report get-positive-neighbors
+  report count link-neighbors with [member? self basic-agents and emotion = 1]
+end
+
+to-report get-negative-neighbors
+  report count link-neighbors with [member? self basic-agents and emotion = -1]
+end
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Layouts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -229,6 +284,46 @@ to update-globals
   set in-cluster-agents count basic-agents with [is-in-cluster = true]
 end
 
+;; Function used to initialize global emotions parameters
+to global-emotions-initialization
+  set BASE_V 0
+  set BASE_A 0
+  set THRESH_A 0
+  set DECAY_V 0.367
+  set DECAY_A 0.414
+  set AMP_V 0.3
+  set AMP_A 0.3
+  set FACTOR_V 0.38
+  set FACTOR_A 0.45
+  set COEFF_B0 0.14
+  set COEFF_B1 0
+  set COEFF_B2 0.057
+  set COEFF_B3 -0.047
+  set COEFF_D0 0.178
+  set COEFF_D1 0.14469
+  set COEFF_D2 0
+  set COEFF_D3 0
+  set CHARGE_H 0
+  set DECAY_H 0.7
+  set IMPACT_H 0.1    ;; This value should be scaled based on the average number of neighbors
+end
+
+;; Function uses to initialize agents emotions
+to agent-emotion-initialization
+  set base-valence median (list -1 (random-normal BASE_V 0.1) 1)
+  set base-arousal median (list -1 (random-normal BASE_A 0.1) 1)
+  set valence base-valence
+  set arousal base-arousal
+  set threshold THRESH_A
+  set emotion 0
+  if arousal >= threshold [
+    set emotion ifelse-value (valence > 0) [1] [(ifelse-value (valence < 0) [-1] [0])]
+  ]
+
+  set field-absolute CHARGE_H
+  set field-sign CHARGE_H
+end
+
 ;; Function used to intialize agents attributes
 to set-characteristics
   set color grey
@@ -249,6 +344,8 @@ to set-characteristics
   set reiterate-counter 0
   set opinion-metric initial-opinion-metric-value
   set is-opinion-b-static false
+
+  agent-emotion-initialization
 end
 
 ;; Function to setup the network using the Erdős–Rényi model
@@ -306,6 +403,18 @@ end
 
 ;; Function used to color agents based on their characteristics
 to color-nodes
+  ask basic-agents [
+    if emotion = 1 [
+      set shape "square"
+    ]
+    if emotion = -1 [
+      set shape "triangle"
+    ]
+    if emotion = 0 [
+      set shape "circle"
+    ]
+  ]
+
   ask basic-agents [
     if is-a-active = true [
       set color orange
@@ -853,6 +962,68 @@ to reiterate-agents
 end
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Emotions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Method changing the agent state variables given their perception of
+;; the field, using its state variable as input and adding stochasticity
+;; to global change coefficients
+to perception
+  set valence valence + (field-sign * (COEFF_B0 +
+                                       COEFF_B1 * valence +
+                                       ((round (COEFF_B2 * valence * 1e9)) / 1e9) ^ 2 +
+                                       ((round (COEFF_B3 * valence * 1e9)) / 1e9) ^ 3))
+  set arousal arousal + (field-absolute * (COEFF_D0 +
+                                           COEFF_D1 * arousal +
+                                           ((round (COEFF_D2 * arousal * 1e9)) / 1e9) ^ 2 +
+                                           ((round (COEFF_D3 * arousal * 1e9)) / 1e9) ^ 3))
+
+  ;; Stochastic shocks triggering agent interaction
+  set valence valence + AMP_V * ((random-float 2) - 1)
+  set arousal arousal + AMP_A * ((random-float 2) - 1)
+
+  ;; Be sure that valence remains in range [-1,1]
+  set valence median (list -1 valence 1)
+
+  ;; Be sure that arousal remains in range [-1,1]
+  set arousal median (list -1 arousal 1)
+end
+
+;; Method checking if an agent expresses its emotions, down-regulating
+;; them using global factors, and setting information whether it is
+;; a positive or negative emotion, or none at all.
+to expression
+  set emotion 0
+  if arousal >= threshold [
+    set emotion ifelse-value (valence > 0) [1] [(ifelse-value (valence < 0) [-1] [0])]
+    set valence ((valence - base-valence) * FACTOR_V + base-valence)
+    set arousal ((arousal - base-arousal) * FACTOR_A + base-arousal)
+  ]
+end
+
+;;; Method relaxing the emotions of an agent towards their respective
+;;; baselines, using the global decay parameter.
+to relaxation
+  set valence valence - (DECAY_V * (valence - base-valence))
+  set arousal arousal - (DECAY_A * (arousal - base-arousal))
+end
+
+;; Method changing the field state variable using positive and
+;; negative emotional expressions as input, adding decay over time using
+;; a global parameter.
+to communication
+  let positive-expressions get-positive-neighbors
+  let negative-expressions get-negative-neighbors
+  let absolute-expressions positive-expressions + negative-expressions
+  let sign-expressions positive-expressions - negative-expressions
+
+  set field-absolute field-absolute + ((-1 * DECAY_H * field-absolute) +
+                                       (IMPACT_H * absolute-expressions))
+  set field-sign field-sign + ((-1 * DECAY_H * field-sign) +
+                               (IMPACT_H * sign-expressions))
+end
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Go
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -947,6 +1118,18 @@ to go
     set is-a-active false
     set is-b-active true
     set is-inactive-next false
+  ]
+
+  ;; Updating the emotion of each agent
+  ask basic-agents [
+    perception
+    expression
+    relaxation
+  ]
+
+  ;; Updating the neighbors emotion field
+  ask basic-agents [
+    communication
   ]
 
   ;; Updating the color of the nodes
@@ -1566,6 +1749,39 @@ node-range-static-b
 1
 NIL
 HORIZONTAL
+
+MONITOR
+732
+548
+868
+593
+NIL
+get-positive-emotions
+17
+1
+11
+
+MONITOR
+731
+598
+872
+643
+NIL
+get-negative-emotions
+17
+1
+11
+
+MONITOR
+874
+548
+1007
+593
+NIL
+get-neutral-emotions
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?
