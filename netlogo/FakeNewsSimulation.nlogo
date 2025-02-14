@@ -20,6 +20,8 @@ globals [
   ;; Emotions Parameters
   BASE_V                     ;; Valence baseline ... b
   BASE_A                     ;; Arousal baseline ... d
+  BASE_V_ECHO                ;; Valence baseline in echo chambers
+  BASE_A_ECHO                ;; Arousal baseline in echo chambers
   THRESH_A                   ;; Arousal threshold ... tau
   DECAY_V                    ;; Valence decay ... gamma_v
   DECAY_A                    ;; Arousal decay ... gamma_a
@@ -288,6 +290,8 @@ end
 to global-emotions-initialization
   set BASE_V 0
   set BASE_A 0
+  set BASE_V_ECHO -0.25
+  set BASE_A_ECHO 0.1
   set THRESH_A 0
   set DECAY_V 0.367
   set DECAY_A 0.414
@@ -309,9 +313,9 @@ to global-emotions-initialization
 end
 
 ;; Function uses to initialize agents emotions
-to agent-emotion-initialization
-  set base-valence median (list -1 (random-normal BASE_V 0.1) 1)
-  set base-arousal median (list -1 (random-normal BASE_A 0.1) 1)
+to agent-emotion-initialization [b-v b-a]
+  set base-valence median (list -1 (random-normal b-v 0.1) 1)
+  set base-arousal median (list -1 (random-normal b-a 0.1) 1)
   set valence base-valence
   set arousal base-arousal
   set threshold THRESH_A
@@ -345,7 +349,7 @@ to set-characteristics
   set opinion-metric initial-opinion-metric-value
   set is-opinion-b-static false
 
-  agent-emotion-initialization
+  agent-emotion-initialization BASE_V BASE_A
 end
 
 ;; Function to setup the network using the Erdős–Rényi model
@@ -582,6 +586,11 @@ to initialize-echo-chamber
   ]
 
   ;print(mean-connection)
+
+  ;; Set up emotions in echo chambers with different valence and arousal baselines
+  ask basic-agents with [is-in-cluster = true] [
+    agent-emotion-initialization BASE_V_ECHO BASE_A_ECHO
+  ]
 
 end
 
