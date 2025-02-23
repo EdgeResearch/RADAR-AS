@@ -1,0 +1,97 @@
+Number of Ticks: 100
+Number of Iterazioni: 100
+Opinion Polarization: 0.0
+Network Polarization: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+Thresholds: [0.27, 0.342, 0.414]
+>> Loading the NetLogo model...
+>> Model Loaded
+>> Starting the test...
+>> Retrieving the parameters... 
+Number of Iterations: 100
+>> Parameters Retrieved
+P_N is set to: 0.0
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+P_N is set to: 0.1
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+P_N is set to: 0.2
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+P_N is set to: 0.3
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+P_N is set to: 0.4
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+P_N is set to: 0.5
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+P_N is set to: 0.6
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+P_N is set to: 0.7
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+P_N is set to: 0.8
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+P_N is set to: 0.9
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+P_N is set to: 1.0
+teta is set to: 0.27
+teta is set to: 0.342
+teta is set to: 0.414
+>> Saving the results...
+>> Result saved in test_general_results/
+>> Creating the graph...
+>> Graph created and saved in  test_general_results/
+>> Test completed
+>> Stampo il dataframe:
+    Thresholds  Network Polarization  Virality
+0        0.270                   0.0      0.82
+1        0.342                   0.0      0.54
+2        0.414                   0.0      0.09
+3        0.270                   0.1      0.88
+4        0.342                   0.1      0.58
+5        0.414                   0.1      0.12
+6        0.270                   0.2      0.84
+7        0.342                   0.2      0.65
+8        0.414                   0.2      0.16
+9        0.270                   0.3      0.89
+10       0.342                   0.3      0.66
+11       0.414                   0.3      0.17
+12       0.270                   0.4      0.93
+13       0.342                   0.4      0.67
+14       0.414                   0.4      0.18
+15       0.270                   0.5      0.91
+16       0.342                   0.5      0.71
+17       0.414                   0.5      0.27
+18       0.270                   0.6      0.87
+19       0.342                   0.6      0.84
+20       0.414                   0.6      0.27
+21       0.270                   0.7      0.90
+22       0.342                   0.7      0.91
+23       0.414                   0.7      0.31
+24       0.270                   0.8      0.87
+25       0.342                   0.8      0.89
+26       0.414                   0.8      0.37
+27       0.270                   0.9      0.83
+28       0.342                   0.9      0.74
+29       0.414                   0.9      0.18
+30       0.270                   1.0      0.59
+31       0.342                   1.0      0.64
+32       0.414                   1.0      0.19
+>> Shutting down the system...
+>> Sending results...
