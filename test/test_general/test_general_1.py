@@ -41,6 +41,7 @@ def start_test_1(netlogo, netlogoCommands, testParameters):
     netlogoCommands.set_total_ticks(TestGeneralParametes.total_ticks)
 
     print(">> Parameters Retrieved")
+    
 
     global_cascades = []
     global_cascades_means = []
