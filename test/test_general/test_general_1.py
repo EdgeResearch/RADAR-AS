@@ -12,8 +12,8 @@ from test_general_parameters import calculate_fraction
 
 def load_sim_model():
     modelfile = os.path.abspath('../../netlogo/FakeNewsSimulation.nlogo')
-    #netlogo = pynetlogo.NetLogoLink(netlogo_home='/home/musimathicslab/Desktop/NetLogo-6.4.0-64')
-    netlogo = pynetlogo.NetLogoLink()
+    netlogo = pynetlogo.NetLogoLink(netlogo_home='/home/musimathicslab/Desktop/NetLogo-6.4.0-64')
+    #netlogo = pynetlogo.NetLogoLink()
 
     netlogo.load_model(modelfile)
 
