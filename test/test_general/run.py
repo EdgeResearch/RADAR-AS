@@ -11,6 +11,7 @@ from test_general_parameters import TestGeneralParametes
 from test_general_sa_1.test_general_parameters_sa import SuperAgentTestGeneralParametes
 from test_general_sa_1 import test_general_sa_1
 from utils import Tee, LogManager
+import datetime
 
 app = Bottle()
 
@@ -28,13 +29,8 @@ def submit_test_1():
 
     def start_test_1():
         testParameters = TestGeneralParametes()
-        # Crea un'istanza di Tee per gestire i log su terminale e file simultaneamente
-        path = testParameters.path + "test_general_1/"
-        testParameters.set_path(path)
-        log_path = testParameters.path + 'log.txt'
-        tee = Tee(log_path)
-        # Redirect sys.stdout to the tee object
-        sys.stdout = tee
+
+
 
         inputParameters = request.json
         try:
@@ -45,6 +41,14 @@ def submit_test_1():
             thresholds = inputParameters['thresholds']
             nbnodes  = inputParameters['nbnodes']
             email = inputParameters['email']
+
+            # Crea un'istanza di Tee per gestire i log su terminale e file simultaneamente
+            path = testParameters.path + "test_general_1/"
+            testParameters.set_path(path)
+            log_path = testParameters.path + '' +nbnodes + '_nodes_log.txt'
+            tee = Tee(log_path)
+            # Redirect sys.stdout to the tee object
+            sys.stdout = tee
 
             network_polarization = [float(value) for value in network_polarization.split(",")]
             thresholds = [float(value) for value in thresholds.split(",")]
@@ -89,6 +93,7 @@ def submit_test_1():
             log_messages = [
                 {"status": "in_progress", "value": ">> Model Loaded"},
                 {"status": "in_progress", "value": ">> Starting the test..."},
+                {"status": "in_progress", "value": f"Starting time: {datetime.datetime.now()}"}
             ]
 
             for msg in log_messages:
@@ -99,6 +104,8 @@ def submit_test_1():
             test_result = test_general_1.start_test_1(netlogo, netlogoCommands, testParameters)
 
             log_message = {"status": "in_progress", "value": ">> Test completed"}
+            log_message = {"status": "in_progress", "value": f"Ending time: {datetime.datetime.now()}"}
+
             print(log_message["value"])
             yield json.dumps(log_message) + "\n"
 
@@ -258,11 +265,7 @@ def submit_test_sa_1():
     def start_test_sa_1():
         testParameters = SuperAgentTestGeneralParametes()
         # Crea un'istanza di Tee per gestire i log su terminale e file simultaneamente
-        path = testParameters.path
-        testParameters.set_path(path)
 
-        log_path = path + 'log.txt'
-        log_manager = LogManager(log_path)
 
         inputParameters = request.json
         ticks = int(inputParameters['ticks'])
@@ -272,6 +275,12 @@ def submit_test_sa_1():
         thresholds = inputParameters['thresholds']
         nbnodes = inputParameters['nbnodes']
         email = inputParameters['email']
+
+        path = testParameters.path
+        testParameters.set_path(path)
+
+        log_path = path +''+nbnodes+'_log.txt'
+        log_manager = LogManager(log_path)
 
         network_polarization = [float(value) for value in network_polarization.split(",")]
         thresholds = [float(value) for value in thresholds.split(",")]
@@ -297,7 +306,7 @@ def submit_test_sa_1():
             {"status": "in_progress", "value": f"choose_method: {choose_method}"},
             {"status": "in_progress", "value": f"warning_impact: {warning_impact}"},
             {"status": "in_progress", "value": f"warning_impact_neutral: {warning_impact_neutral}"},
-            {"status": "in_progress", "value": f"sa_delay: {sa_delay}"},
+            {"status": "in_progress", "value": f"sa_delay: {sa_delay}"}
 
         ]
         for msg in log_messages:
@@ -330,6 +339,8 @@ def submit_test_sa_1():
         log_messages = [
             {"status": "in_progress", "value": ">> Model Loaded"},
             {"status": "in_progress", "value": ">> Starting the test..."},
+            {"status": "in_progress", "value": f"Starting time: {datetime.datetime.now()}"}
+
         ]
 
         for msg in log_messages:
@@ -341,6 +352,7 @@ def submit_test_sa_1():
         test_result = test_general_sa_1.start_test_sa_1(netlogo, netlogoCommands, testParameters)
 
         log_message = {"status": "in_progress", "value": ">> Test completed"}
+        log_message = {"status": "in_progress", "value": f"Starting time: {datetime.datetime.now()}"}
         print(log_message["value"])
         log_manager.insert_line(log_message["value"])
         yield json.dumps(log_message) + "\n"

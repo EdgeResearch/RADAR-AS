@@ -20,6 +20,6 @@ teta is set to: 0.27
 >> Test completed
 >> Stampo il dataframe:
    Thresholds  Network Polarization  Virality
-0        0.27                  0.15      0.82
+0        0.27                  0.15      0.83
 >> Shutting down the system...
 >> Sending results...

@@ -3,13 +3,13 @@ Number of Iterazioni: 100
 Opinion Polarization: 0.0
 Network Polarization: [0.15]
 Thresholds: [0.27]
-Number of Nodes: 100
+Number of Nodes: 1000
 >> Loading the NetLogo model...
 >> Model Loaded
 >> Starting the test...
 >> Retrieving the parameters... 
 Number of Iterations: 100
-Number of Nodes: 100.0
+Number of Nodes: 1000.0
 >> Parameters Retrieved
 P_N is set to: 0.15
 teta is set to: 0.27
@@ -20,6 +20,6 @@ teta is set to: 0.27
 >> Test completed
 >> Stampo il dataframe:
    Thresholds  Network Polarization  Virality
-0        0.27                  0.15      0.82
+0        0.27                  0.15       0.0
 >> Shutting down the system...
 >> Sending results...
