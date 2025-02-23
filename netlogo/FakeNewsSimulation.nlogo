@@ -183,6 +183,19 @@ to-report get-most-influent-a-nodes-by-degree-in-cluster [node-span]
 		report x / 10
 end
 
+to remove-highest-betweenness-agent
+  if ticks mod 5 = 0 [
+    let max-betweenness max [betweenness] of basic-agents
+    let target-agent one-of basic-agents with [betweenness = max-betweenness]
+    if target-agent != nobody [
+      ask target-agent [
+        ask my-links [die] ;; Rimuove tutti i link dell'agente
+        die ;; Rimuove l'agente dalla simulazione
+      ]
+    ]
+  ]
+end
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Layouts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -922,6 +935,9 @@ to calculate-opinion-metric [agent opinion]
 end
 
 to go
+
+  remove-highest-betweenness-agent ;; Chiamiamo la funzione ogni tick
+
 
   ;; At the start of the simulation it is checked which procedure the super agent has to do
 
