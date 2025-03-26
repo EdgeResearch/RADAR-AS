@@ -198,3 +198,9 @@ particolare:
 Inoltre, all’inzio della simulazione viene scelto di quanto deve
 cambiare l’*opinion metric* quando l’agente riceve un opinione e supera
 la sua soglia di attivazione, tramite l’*opinion metric step*.
+
+### Note
+
+L'implementazione della componente emotiva introdotta nel modello NetLogo
+è basata sull'implementazione Python del paper di [Garcia et al. (2016)](http://dx.doi.org/10.1098/rsos.160059),
+presente nel repository [r-andre/abm-collective_emotions](https://github.com/r-andre/abm-collective_emotions).
