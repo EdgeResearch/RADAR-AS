@@ -3,7 +3,7 @@ Numero di Iterazioni: 100
 Opinion Polarization: 0.0
 Network Polarization: [0.15]
 Thresholds Polarization: [0.27]
-Number of Nodes: 100
+Number of Nodes: 10
 warning: False
 node_range_static_b: 0.05
 node_range: 0.1
@@ -12,8 +12,3 @@ warning_impact: 0.1
 warning_impact_neutral: 0.3
 sa_delay: 2
 >> Loading the NetLogo model...
->> Model Loaded
->> Starting the test...
-Starting time: 2025-10-24 02:05:38.211301
-Starting time: 2025-10-24 02:29:29.421687
->> Shutting down the system...

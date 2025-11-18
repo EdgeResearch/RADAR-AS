@@ -3,7 +3,9 @@ import pynetlogo
 from environment.fake_news_diffusion_env import FakeNewsSimulation
 from netlogo.simulation_controls import NetlogoCommands
 
-netlogo = pynetlogo.NetLogoLink(gui=False)
+#netlogo = pynetlogo.NetLogoLink(gui=False)
+
+netlogo = pynetlogo.NetLogoLink(netlogo_home="/home/edgelab/Scrivania/NetLogo-6.4.0")
 modelfile = os.path.abspath('./netlogo/FakeNewsSimulation.nlogo')
 netlogoCommands = NetlogoCommands(netlogo, modelfile)
 env = FakeNewsSimulation(netlogoCommands)

@@ -20,7 +20,7 @@ modelfile = os.path.abspath('test_general_sa_1/netlogo/FakeNewsSimulation.nlogo'
 
 
 def load_sim_model():
-    netlogo = pynetlogo.NetLogoLink(netlogo_home='/home/edgelab/Desktop/NetLogo-6.4')
+    netlogo = pynetlogo.NetLogoLink(netlogo_home='/home/edgelab/Scrivania/NetLogo-6.4.0')
     #netlogo = pynetlogo.NetLogoLink()
 
     netlogo.load_model(modelfile)

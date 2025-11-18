@@ -1,0 +1,22 @@
+2025-11-18 12:19:10.316619: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2025-11-18 12:19:10.334199: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-11-18 12:19:10.846522: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-11-18 12:19:11.953728: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-11-18 12:19:11.957047: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+Bottle v0.13.4 server starting up (using WSGIRefServer())...
+Listening on http://0.0.0.0:11111/
+Hit Ctrl-C to quit.
+
+127.0.0.1 - - [18/Nov/2025 12:31:56] "GET / HTTP/1.1" 200 2451
+127.0.0.1 - - [18/Nov/2025 12:31:56] "GET /static/styles/main-style.css HTTP/1.1" 200 1608
+127.0.0.1 - - [18/Nov/2025 12:31:56] "GET /static/styles/loading-style.css HTTP/1.1" 200 866
+127.0.0.1 - - [18/Nov/2025 12:31:56] "GET /static/styles/form-style.css HTTP/1.1" 304 0
+127.0.0.1 - - [18/Nov/2025 12:31:56] "GET /static/styles/homepage-style.css HTTP/1.1" 304 0
+127.0.0.1 - - [18/Nov/2025 12:31:56] "GET /static/script/main_script.js HTTP/1.1" 304 0
+127.0.0.1 - - [18/Nov/2025 12:31:57] "GET /static/assets/fake-news.png HTTP/1.1" 304 0
+127.0.0.1 - - [18/Nov/2025 12:32:03] "GET /test1_page HTTP/1.1" 200 20469
+127.0.0.1 - - [18/Nov/2025 12:32:03] "GET /static/styles/result-style.css HTTP/1.1" 200 898
+127.0.0.1 - - [18/Nov/2025 12:32:03] "GET /static/script/result-page-script.js HTTP/1.1" 304 0
+127.0.0.1 - - [18/Nov/2025 12:32:03] "GET /static/script/form_script.js HTTP/1.1" 304 0
+127.0.0.1 - - [18/Nov/2025 12:32:03] "GET /static/assets/dialog.png HTTP/1.1" 200 9091

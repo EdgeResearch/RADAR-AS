@@ -1091,10 +1091,10 @@ SLIDER
 104
 nb-nodes
 nb-nodes
-10
+100
 10000
-10.0
-1
+100.0
+10
 1
 NIL
 HORIZONTAL
@@ -1165,7 +1165,7 @@ echo-chamber-fraction
 echo-chamber-fraction
 0
 1
-0.2
+0.1
 0.01
 1
 NIL
@@ -1226,7 +1226,7 @@ CHOOSER
 network
 network
 "Erdos Reny" "Preferencial Attachment" "Small World"
-0
+2
 
 SLIDER
 468
