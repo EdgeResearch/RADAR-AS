@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test General 1</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/styles/main-style.css" rel="stylesheet">
+    <link href="../static/styles/loading-style.css" rel="stylesheet">
+    <link href="../static/styles/form-style.css" rel="stylesheet">
+    <link href="../static/styles/result-style.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="../static/script/result-page-script.js"></script>
+    <script src="../static/script/main_script.js"></script>
+    <script src="../static/script/form_script.js"></script>
+    <script src="https://kit.fontawesome.com/2f266e86a2.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container main-container p-4">
+    <form action="/submit" method="POST" id="test-form">
+        <div class="row">
+            <div class="col-12 col-md-7 text-center text-md-right"><h1 class="mt-3 main-title" id="titolo"
+                                                                       style="color: #003049">TEST 1</h1></div>
+            <div class="col-12 col-md-5 text-center text-md-left"><img style="height: 15vh"
+                                                                       src="../static/assets/dialog.png"></div>
+            <div class="col-12 text-center"><h4 class="mb-5">How does Virality change as network polarization and Thresholds (credulity) change?</h4></div>
+        </div>
+        <div class="row form-row">
+            <div class="col-md-6 col-12">
+                <div class="input-container">
+                    <label for="ticks" class="label-field"> Ticks</label>
+                    <span class="info-field" id="ticks-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="ticks" name="ticks" placeholder="Number of Ticks"
+                           value="100">
+                    <div id="ticks-info" class="form-info">
+                        <p>Ticks represent the time instants of the simulation and determine the duration of the simulation.</p>
+                        <ul>
+                            <li><b>Domain: n > 0</b></li>
+                            <li>Default Value: 100</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="input-container">
+                    <label for="iterations" class="label-field">Number Of Iterations</label>
+                    <span class="info-field" id="iterations-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="iterations" name="iterations"
+                           placeholder="Number of Iteration" value="100">
+                    <div id="iterations-info" class="form-info">
+                        <p>Number of iterations of the simulation.</p>
+                        <ul>
+                            <li><b>Domain: n > 0</b></li>
+                            <li>Default Value: 100</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-12">
+                <label for="opinion_polarization">Opinion Polarization</label>
+                <span class="info-field" id="opinion-polarization-info-icon">info<i
+                        class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                <input type="number" class="form-control" id="opinion_polarization" name="opinion_polarization"
+                       placeholder="Opinion Polarization" value="0">
+                <div id="opinion-polarization-info" class="form-info">
+                    <p>It indicates how much the users, in relation to an opinion, are more likely to share its views.
+                        Technically states how much nodes inside the echo-chamber have a lower threshold activation than the average, and so they are more easily influenceable.</p>
+                    <ul>
+                        <li><b>Domain:</b> &Ropf;[0,1]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-12">
+                <label for="network_polarization">Network Polarization</label>
+                <span class="info-field" id="network-polarization-info-icon">info<i
+                        class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                <input type="text" class="form-control" id="network_polarization" name="network_polarization"
+                       pattern="^(\d+(\.\d+)?)(,\s*\d+(\.\d+)?)*$"
+                       placeholder="Example: 0.150, 0.174, 0.198">
+                <div id="network-polarization-info" class="form-info">
+                    <p>It indicates how connected users in the cluster are to each other compared to the rest of the network.
+                        Technically, it is the density of connections within the cluster.</p>
+                    <ul>
+                        <li><b>Domain:</b> &Ropf;[0,1]</li>
+                        <li><b>Multiple values, separated by a comma </b>, can be entered in the following format: [0.1,0.2, etc.]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-12">
+                <label for="thresholds">Thresholds</label>
+                <span class="info-field" id="thresholds-info-icon">info<i
+                        class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                <input type="text" class="form-control" id="thresholds" name="thresholds"
+                       pattern="^(\d+(\.\d+)?)(,\s*\d+(\.\d+)?)*$"
+                       placeholder="Example: 0.150, 0.174, 0.198">
+                <div id="thresholds-info" class="form-info">
+                    <p>Determines the activation threshold of the node.</p>
+                    <ul>
+                        <li><b>Domain:</b> &Ropf;[0,1]</li>
+                        <li><b>Multiple values, separated by a comma </b>, can be entered in the following format: [0.1,0.2, etc.]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row form-row">
+            <div class="col-12">
+                <label for="superagent">Super-Agent</label>
+                <span class="info-field" id="superagent-info-icon">info
+                    <i class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                <ul>
+                    <li><input type="checkbox" class="form-checkbox" id="superagent" name="superagent" value="true">
+                    </li>
+                </ul>
+                <div id="superagent-info" class="form-info">
+                    <p>Enable the use of a Super-Agent, based on Deep Reinforcement Learning act to limit virality </p>
+                </div>
+            </div>
+        </div>
+        <div class="row form-row" id="superagent-parameters-container" style="display: none">
+            <div class="col-12 text-center mb-3">
+                <h5 style="font-weight: bold; color: #C1111F; text-decoration-line: underline;">Super-Agent Parameters:</h5>
+            </div>
+            <div class="col-md-6 col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="warning" class="label-field"> Warning</label>
+                    <span class="info-field" id="warning-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <ul>
+                        <li><input type="checkbox" class="form-checkbox" id="warning" name="warning" value="True"></li>
+                    </ul>
+
+                    <div id="warning-info" class="form-info">
+                        <p>Contrast action aimed at showing the user (the node) a warning beforehand,
+                            warning him or her that the news he or she is about to read has no verified sources (or comes from an unreliable source), suggesting that it may be fake news.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="node-range-static-b" class="label-field">node-range-static-b</label>
+                    <span class="info-field" id="node-range-static-b-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="node-range-static-b" name="node-range-static-b"
+                           placeholder="node-range-static-b value" value="0.05">
+                    <div id="node-range-static-b-info" class="form-info">
+                        <p>It indicates the fraction of nodes to which the super-agent obligates the maintenance of opinion B, i.e. favorable to the true news. In order to counter the spread of fake news.</p>
+                        <ul>
+                            <li><b>Domain:</b> &Ropf;[0,1]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="node-range" class="label-field"> node-range</label>
+                    <span class="info-field" id="node-range-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="node-range" name="node-range"
+                           placeholder="node-range value" value="0.10">
+                    <div id="node-range-info" class="form-info">
+                        <p>Define the fraction of nodes on which the super agent acts.</p>
+                        <ul>
+                            <li><b>Domain:</b> &Ropf;[0,1]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="choose-method" class="label-field">choose-method</label>
+                    <span class="info-field" id="choose-method-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <select class="form-control" id="choose-method" name="choose-method">
+                            <option value="degree" selected>degree</option>
+                            <option value="betweenness">betweenness</option>
+                            <option value="page-rank">page-rank</option>
+                            <option value="degree-in-cluster">deegree-in-cluster</option>
+                        <option value="random">random</option>
+                    </select>
+                    <div id="choose-method-info" class="form-info">
+                        <p>Determines the selection criteria that the super agent uses to select the nodes to act on.</p>
+                        <ul>
+                            <li><b>deegree</b>, the choice depends on the number of links (or arcs) a node has with others.</li>
+                            <li><b>deegree-in-cluster</b>, select the nodes, within the echo-chamber, with the most connections to others.</li>
+                            <li><b>betweenness</b>, selects based on how often the node serves as a crossing point or intermediary in the shortest paths between two other nodes in the network.</li>
+                            <li><b>random</b>, nodes are selected by a random but “weighted” choice, so as to achieve a balanced and equal representation between nodes outside and inside the echo-chamber.</li>
+                            <li><b>page-rank</b>, selects a node based on its importance, considering quantity and quality of its links.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="warning-impact" class="label-field">warning-impact</label>
+                    <span class="info-field" id="warning-impact-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="warning-impact" name="warning-impact"
+                           placeholder="warning-impact value" value="0.10">
+                    <div id="warning-impact-info" class="form-info">
+                        <p>Value that adjusts the influence of the warning in nodes with type A opinion, favorable to fake news. The higher the value, the more efficient the restraining action of warning will be.</p>
+                        <ul>
+                            <li><b>Domain:</b> &Ropf;[0,1]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="warning-impact-neutral" class="label-field"> warning-impact-neutral</label>
+                    <span class="info-field" id="warning-impact-neutral-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="warning-impact-neutral" name="warning-impact-neutral"
+                           placeholder="warning-impact-neutral value" value="0.30">
+                    <div id="warning-impact-neutral-info" class="form-info">
+                        <p>Value that adjusts the influence of warning in nodes with neutral opinion. The higher the value, the more efficient the restraining action of warning will be.</p>
+                        <ul>
+                            <li><b>Domain:</b> &Ropf;[0,1]</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12" style="margin-top: 0.8em">
+                <div class="input-container">
+                    <label for="sa-delay" class="label-field"> super-agent delay</label>
+                    <span class="info-field" id="sa-delay-info-icon">info<i
+                            class="fa-sharp fa-solid fa-circle-info icon icon-style"></i></span>
+                    <input type="number" class="form-control" id="sa-delay" name="sa-delay"
+                           placeholder="sa-delay value" value="2">
+                    <div id="sa-delay-info" class="form-info">
+                        <p>It indicates after how many simulation ticks the super-agent can intervene.</p>
+                        <ul>
+                            <li>Domain: 0 < n < total-ticks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row mt-4">
+        <div class="col-xs-12 col-md-6">
+            <div class="menuButton" onclick="goHome()">
+                <a><h4 class="buttonText">Home <i class="fa-solid fa-house"></i></h4></a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <button class="menuButton" id="startButton" onclick='selectAndStartTest()'>
+                <a><h4 class="buttonText">Start Test <i class="fa-solid fa-circle-play"></i></h4></a>
+            </button>
+        </div>
+        <div class="col-12 mt-5">
+            <div class="loader" id="loader-bar">
+                <div class="loaderBar"></div>
+            </div>
+            <div class="log-box" id="log-box" style="margin-top: 1em; height: 20vh; overflow-y: scroll;">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function selectAndStartTest() {
+        if (document.getElementById("superagent").checked){
+            console.log("Calling start_test_sa_1");
+            start_test_sa_1()
+        } else {
+            console.log("Calling start_test_1");
+            start_test_1()
+        }
+    }
+</script>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

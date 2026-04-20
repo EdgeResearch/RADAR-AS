@@ -1,0 +1,16 @@
+
+.test-card{
+    background-color: ghostwhite;
+    border-radius: 1em;
+    padding: 1em;
+    margin: 1em 0;
+    box-sizing: border-box;
+    border: #003049 8px solid;
+    font-size: 1.1em;
+}
+
+.test-card:hover{
+    background-color: #003049;
+    color: white;
+    transition: 0.2s linear;
+}
