@@ -53,6 +53,9 @@ class LogManager:
         with open(self.filepath, 'w') as file:
             pass
 
+    def clear_buffer(self):
+        self.log_message = ""
+
 def setup_data_for_chart(dataframe, dataLabel):
     print(">> Stampo il dataframe:")
     print(dataframe)

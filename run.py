@@ -5,9 +5,10 @@ import os
 import json
 import utils, test_general_2, test_general_1
 from test_general_parameters import TestGeneralParametes
-from test_general_sa_1.test_general_parameters_sa import SuperAgentTestGeneralParametes
-from test_general_sa_1 import test_general_sa_1
+from test_general_parameters_sa import SuperAgentTestGeneralParametes
+import test_general_sa_1
 from utils import Tee, LogManager
+from datetime import datetime
 
 app = Bottle()
 
@@ -228,7 +229,14 @@ def submit_test_sa_1():
         path = testParameters.path
         testParameters.set_path(path)
 
-        log_manager = LogManager(path + 'log.txt')
+
+
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        log_filename = f"log_{timestamp}.txt"
+
+        log_manager = LogManager(path + log_filename)
+
+
 
         inputParameters = request.json
         ticks = int(inputParameters['ticks'])
@@ -300,7 +308,7 @@ def submit_test_sa_1():
             yield json.dumps(msg) + "\n"
             time.sleep(1)
 
-        dataframe, img_chart = test_general_sa_1.start_test_sa_1(netlogo, netlogoCommands, testParameters)
+        dataframe, img_chart = test_general_sa_1.start_test_sa_1(netlogo, netlogoCommands, testParameters, log_manager=log_manager)
 
         log_message = {"status": "in_progress", "value": ">> Test terminato"}
         print(log_message["value"])
@@ -318,7 +326,8 @@ def submit_test_sa_1():
         netlogo.kill_workspace()
 
         output = log_manager.get_contents()
-        log_manager.clear_log()
+        #log_manager.clear_log()
+        log_manager.clear_buffer()
 
         response_data = {
             "data_for_chart": data_for_chart,
